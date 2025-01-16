@@ -2,7 +2,7 @@ import { movieType } from "@/types/search";
 import { mapedMovieType } from "@/types/movies";
 import { MapedActorType } from "@/types/actors";
 
-import { Tables } from "../sup.types";
+import { Tables } from "../supabase.types";
 
 export const orderMovieList = (arr: movieType[] | undefined) => {
   const newArr = arr?.map((a) => {

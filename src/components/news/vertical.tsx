@@ -27,7 +27,7 @@ const NewsForInnerPages = ({ headline }: { headline: string }) => {
               <div className="flex w-2/3 flex-col text-sm">
                 <Link to="news/2" className="hover:underline">
                   Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  {index}
+                  {String(index)}
                 </Link>
                 <div className="text-muted-foreground pt-1 text-xs">11 Jan</div>
               </div>

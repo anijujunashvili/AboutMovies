@@ -1,7 +1,7 @@
 import { supabase } from "..";
 import { searchWithPag } from "../utils";
 import { moviesWithPagType, moviesRateType } from "@/types/movies";
-import { Tables } from "../sup.types";
+import { Tables } from "../supabase.types";
 
 export const getMovies = async () => {
   try {
