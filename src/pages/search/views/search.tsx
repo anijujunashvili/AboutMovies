@@ -15,7 +15,7 @@ import { useEffect } from "react";
 
 type searchType = {
   search: string;
-  from: number;
+  from: string;
 };
 
 const SearchBar = () => {
@@ -28,7 +28,7 @@ const SearchBar = () => {
     ...searchDefValues,
     ...qs.parse(searchParams.toString()),
   };
-  const { control, handleSubmit, setValue } = useForm<File>({
+  const { control, handleSubmit, setValue } = useForm<searchType>({
     defaultValues: parsedDeafaultParams,
   });
 
