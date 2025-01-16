@@ -1,5 +1,5 @@
 export type movieType = {
-  awards: string;
+  awards: number;
   created_at: string;
   description_en: string;
   description_ka: string;

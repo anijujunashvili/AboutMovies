@@ -1,20 +1,16 @@
 import { supabase } from "..";
-import { orderMovieList, searchWithPag } from "../utils";
-import {
-  mapedMovieType,
-  moviesWithPagType,
-  moviesRateType,
-  userRatedMoviesType,
-} from "@/types/movies";
+import { searchWithPag } from "../utils";
+import { moviesWithPagType, moviesRateType } from "@/types/movies";
+import { Tables } from "../sup.types";
 
 export const getMovies = async () => {
   try {
     const result = await supabase.from("movies").select("*");
-    const orderedData = result?.data
-      ? orderMovieList(result?.data)
-      : result?.data;
+    // const orderedData = result?.data
+    //   ? orderMovieList(result?.data)
+    //   : result?.data;
 
-    return orderedData as mapedMovieType[];
+    return result?.data as Tables<"movies">[];
   } catch (error) {
     console.log("Error during get movies list", error);
   }
@@ -26,7 +22,7 @@ export const getMovieInfo = async (m_id: number) => {
 
     const orderedData = result?.data ? result?.data[0] : result;
 
-    return orderedData as mapedMovieType;
+    return orderedData as Tables<"movies">;
   } catch (error) {
     console.log("Error during get movies list", error);
   }
@@ -39,7 +35,7 @@ export const getUserRatedMovies = async (user_id: string) => {
       .select("*")
       .eq("user_id", user_id);
 
-    return result.data as userRatedMoviesType[];
+    return result.data as Tables<"user_ratings">[];
   } catch (error) {
     console.log("Error during get movies list", error);
   }

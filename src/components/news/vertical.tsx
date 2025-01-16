@@ -12,7 +12,7 @@ const NewsForInnerPages = ({ headline }: { headline: string }) => {
         <div className="flex flex-col space-y-10">
           {Array.from({ length: 5 }).map((index) => (
             <div
-              key={index as number}
+              key={Math.random()}
               className="flex h-[100px] cursor-pointer flex-row gap-2 rounded-md shadow-md"
             >
               <div className="w-1/3">
@@ -27,6 +27,7 @@ const NewsForInnerPages = ({ headline }: { headline: string }) => {
               <div className="flex w-2/3 flex-col text-sm">
                 <Link to="news/2" className="hover:underline">
                   Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                  {index}
                 </Link>
                 <div className="text-muted-foreground pt-1 text-xs">11 Jan</div>
               </div>

@@ -3,7 +3,7 @@ import { movieType } from "@/types/search";
 import { MapedActorType } from "@/types/actors";
 import { advancedSearch } from "@/types/search";
 import { moviesWithPagType } from "@/types/movies";
-import { searchWithPag } from "../utils";
+// import { searchWithPag } from "../utils";
 
 export const getSearchInfo = async (key: string, lang: string) => {
   try {
@@ -33,11 +33,11 @@ export const getAdvancedSearchInfo = async (payload: advancedSearch) => {
       .ilike(searchColumn, `%${payload.search}%`)
       .range(payload.from, payload.to);
 
-    const last = result.data
-      ? searchWithPag(result.data, result.count)
-      : result.data;
+    // const last = result.data
+    //   ? searchWithPag(result.data, result.count)
+    //   : result.data;
 
-    return last as moviesWithPagType[] | MapedActorType[];
+    return result.data as moviesWithPagType[] | MapedActorType[];
   } catch (error) {
     console.log("Error during get movies list", error);
   }

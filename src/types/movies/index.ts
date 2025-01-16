@@ -1,13 +1,13 @@
 export type mapedMovieType = {
-  awards: string;
+  awards?: number;
   created_at: string;
-  description_en: string;
-  description_ka: string;
+  description_en?: string;
+  description_ka?: string;
   id: number;
   image: string;
   name_en: string;
   name_ka: string;
-  nomination: number;
+  nomination?: number;
   oscars: number;
   rating_count: number;
   rating_sum: number;
@@ -17,7 +17,7 @@ export type mapedMovieType = {
 };
 
 export type moviesWithPagType = {
-  awards: string;
+  awards: number;
   created_at: string;
   description_en: string;
   description_ka: string;

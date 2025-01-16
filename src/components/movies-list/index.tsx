@@ -107,7 +107,7 @@ const MoviesList = ({ headline }: { headline: string }) => {
                           className="text-primary"
                           fill="#ffc300"
                         />
-                        <span>{movie.rating.toFixed(1)}</span>
+                        <span>rame 8</span>
                       </div>
                       <div className="">
                         {checkIfIsRated(movie.id, false) ||
@@ -170,8 +170,8 @@ const MoviesList = ({ headline }: { headline: string }) => {
                                       onClick={() =>
                                         handleRate(
                                           movie.id,
-                                          movie.rating_count,
-                                          movie.rating_sum,
+                                          Number(movie?.rating_count),
+                                          Number(movie.rating_sum),
                                         )
                                       }
                                     >
@@ -188,8 +188,8 @@ const MoviesList = ({ headline }: { headline: string }) => {
                     <Link to={`/${lang}/${APP_PATHS.MOVIES}/${movie.id}`}>
                       <h5 className="text-md mb-2 font-semibold tracking-tight text-gray-900 hover:underline dark:text-white">
                         {lang == "ka"
-                          ? shortenText(movie.name_ka, 20)
-                          : shortenText(movie.name_en, 20)}
+                          ? shortenText(String(movie.name_ka), 20)
+                          : shortenText(String(movie.name_en), 20)}
                       </h5>
                     </Link>
                   </div>

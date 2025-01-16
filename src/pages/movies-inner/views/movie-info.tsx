@@ -13,7 +13,10 @@ const MovieInfo = () => {
   const { lang, id } = useParams();
 
   const { data: info } = useGetMovieInfo(Number(id));
-  const rating = info ? info?.rating_sum / info?.rating_count : 0;
+  const rating =
+    info?.rating_sum && info.rating_count
+      ? info?.rating_sum / info?.rating_count
+      : 0;
   const { data: actors } = useGetMovieActors(Number(id));
 
   return (
@@ -58,7 +61,6 @@ const MovieInfo = () => {
           <div className="flex w-1/3">
             <img
               src={import.meta.env.VITE_SUPABASE_STORAGE_URL + info?.image}
-              alt={info?.name_en}
               className="rounded-sm"
             />
           </div>

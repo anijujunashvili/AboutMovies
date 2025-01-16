@@ -1,6 +1,8 @@
 import { movieType } from "@/types/search";
 import { mapedMovieType } from "@/types/movies";
-import { actorType, MapedActorType } from "@/types/actors";
+import { MapedActorType } from "@/types/actors";
+
+import { Tables } from "../sup.types";
 
 export const orderMovieList = (arr: movieType[] | undefined) => {
   const newArr = arr?.map((a) => {
@@ -14,7 +16,7 @@ export const orderMovieList = (arr: movieType[] | undefined) => {
 };
 
 export const searchWithPag = (
-  arr: movieType[] | actorType[] | undefined,
+  arr: Tables<"movies">[] | Tables<"actors">[] | undefined,
   count: number | null,
 ) => {
   const newArr = arr?.map((a) => {
