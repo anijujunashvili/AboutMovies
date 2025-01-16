@@ -1,7 +1,7 @@
 import { supabase } from "..";
 import { searchWithPag } from "../utils";
 import { moviesWithPagType, moviesRateType } from "@/types/movies";
-import { Database, Tables } from "../supabase.types";
+import { Tables } from "../supabase.types";
 
 export const getMovies = async () => {
   try {
@@ -69,18 +69,13 @@ export const rateMovie = async (payload: moviesRateType) => {
       })
       .match({ id: payload.m_id })
       .then(() => {
-        return supabase
-          .from("user_ratings")
-          .upsert([
-            {
-              user_id: payload.user_id,
-              m_id: payload.m_id,
-              rating: payload.rate,
-            },
-          ])
-          .then((res) => {
-            return res as Database["public"]["Tables"]["user_ratings"]["Update"];
-          });
+        return supabase.from("user_ratings").upsert([
+          {
+            user_id: payload.user_id,
+            m_id: payload.m_id,
+            rating: payload.rate,
+          },
+        ]);
       });
   } catch (error) {
     console.log("error during rate movies", error);

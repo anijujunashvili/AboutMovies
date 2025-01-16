@@ -12,8 +12,8 @@ export const uploadUserPhoto = async (payload: test) => {
     return supabase.storage
       .from("movies")
       .upload(payload?.image?.name, payload?.image)
-      .then((res) => {
-        return supabase
+      .then(async (res) => {
+        return await supabase
           .from("profiles")
           .update({
             image: res.data?.fullPath,
@@ -38,7 +38,7 @@ export const fillUserInfo = async (payload: userInfoType) => {
     });
 };
 
-export const getUserInfo = async (id: string | number) => {
+export const getUserInfo = async (id: string | undefined) => {
   if (!id) {
     throw new Error("Id undefined");
   }
