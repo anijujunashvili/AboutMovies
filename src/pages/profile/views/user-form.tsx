@@ -37,12 +37,6 @@ const UserForm = () => {
     setValue("name_en", me?.name_en as string);
   }, [me, setValue]);
 
-  // const handleUploadImage = (e: ChangeEvent<HTMLInputElement>) => {
-  //   if (e.target.files) {
-  //     setFile(e.target.files[0]);
-  //     setValue("image", e.target.files[0]);
-  //   }
-  // };
   const userId = me?.id;
 
   const onSubmit = (data: userInfoType) => {
@@ -61,7 +55,7 @@ const UserForm = () => {
         <div className="mx-auto flex w-4/5 flex-col py-10">
           <h3 className="text-secondary border-primary border-l-4 pl-3 text-3xl font-bold">
             {t("profile.profile")}
-            {isPending ? "loading" : ""}
+            {isPending ? "loading..." : ""}
           </h3>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="mt-10 flex w-full flex-row space-x-8">

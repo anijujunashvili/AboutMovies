@@ -6,8 +6,6 @@ import { Badge } from "@/components/ui/badge";
 import { useGetMovieActors } from "@/react-query/query/actors";
 import MovieActors from "./movie-actors";
 import { movieAct } from "@/types/actors";
-import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
 
 const MovieInfo = () => {
   const { lang, id } = useParams();
@@ -106,19 +104,6 @@ const MovieInfo = () => {
             className="aspect-video w-full"
             src="https://www.youtube.com/embed/O1nDozs-LxI"
           ></iframe>
-        </div>
-      </div>
-      <div className="mb-10 flex flex-col space-y-4">
-        <div className="pb-6">
-          <h3 className="text-secondary border-primary border-l-4 pl-3 text-3xl font-bold">
-            User Reviews
-          </h3>
-        </div>
-        <div>
-          <div className="grid w-full gap-2">
-            <Textarea placeholder="Type your message here." />
-            <Button>Send message</Button>
-          </div>
         </div>
       </div>
     </>

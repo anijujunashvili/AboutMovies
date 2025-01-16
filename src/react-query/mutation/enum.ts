@@ -6,4 +6,5 @@ export enum MUTATION_KEYS {
   DELETE_USER_PHOTO = "delete-photo",
   RATE_MOVIE = "rate-movie",
   UPLOAD_USER_IMAGE = "upload-user-image",
+  ADD_REVIEW = "add-review",
 }
