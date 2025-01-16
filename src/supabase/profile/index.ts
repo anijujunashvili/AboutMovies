@@ -1,5 +1,6 @@
 import { supabase } from "@/supabase";
 import { userInfoType } from "@/types/profile";
+import { Database } from "../supabase.types";
 
 type test = {
   user_id: string;
@@ -21,7 +22,7 @@ export const uploadUserPhoto = async (payload: test) => {
           .throwOnError()
           .then((result) => {
             console.log(result);
-            return result;
+            return result as Database["public"]["Tables"]["profiles"]["Update"];
           });
       });
   }
@@ -33,7 +34,7 @@ export const fillUserInfo = async (payload: userInfoType) => {
     .upsert(payload)
     .throwOnError()
     .then((result) => {
-      return result;
+      return result as Database["public"]["Tables"]["profiles"]["Update"];
     });
 };
 
@@ -46,7 +47,7 @@ export const getUserInfo = async (id: string | number) => {
     .select("*")
     .eq("user_id", id)
     .then((res) => {
-      return res ? (res?.data?.[0] as userInfoType) : (res as userInfoType);
+      return res?.data?.[0] as Database["public"]["Tables"]["profiles"]["Row"];
     });
 };
 
@@ -62,8 +63,7 @@ export const deleteUserPhoto = async (payload: deletePhoto) => {
   supabase.storage
     .from("movies")
     .remove([test])
-    .then((res) => {
-      console.log(res);
+    .then(() => {
       return supabase
         .from("profiles")
         .update({ image: "" })
@@ -71,7 +71,7 @@ export const deleteUserPhoto = async (payload: deletePhoto) => {
         .throwOnError()
         .then((result) => {
           console.log("after update", result);
-          return result;
+          return result as Database["public"]["Tables"]["profiles"]["Update"];
         });
     });
 };

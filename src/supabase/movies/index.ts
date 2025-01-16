@@ -1,7 +1,7 @@
 import { supabase } from "..";
 import { searchWithPag } from "../utils";
 import { moviesWithPagType, moviesRateType } from "@/types/movies";
-import { Tables } from "../supabase.types";
+import { Database, Tables } from "../supabase.types";
 
 export const getMovies = async () => {
   try {
@@ -79,7 +79,7 @@ export const rateMovie = async (payload: moviesRateType) => {
             },
           ])
           .then((res) => {
-            return res;
+            return res as Database["public"]["Tables"]["user_ratings"]["Update"];
           });
       });
   } catch (error) {

@@ -10,7 +10,7 @@
     "ts-check": "tsc -noEmit",
     "format": "prettier . --write",
     "preview": "vite preview",
-    "prepare": "husky install",
+    "prepare": "husky",
     "supabase": "npx supabase gen types --lang=typescript --project-id beydyqintkzjsqbsxxrv --schema public > src/supabase/supabase.types.ts"
   },
   "dependencies": {
