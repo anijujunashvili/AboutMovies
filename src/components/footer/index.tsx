@@ -3,7 +3,7 @@ import Logo from "../logo";
 import FooterMenu from "./footer-menu";
 import { Mail } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router";
 
 const Footer = () => {
   const { t } = useTranslation();

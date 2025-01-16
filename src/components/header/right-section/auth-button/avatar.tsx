@@ -9,7 +9,7 @@ import { LogOut, UserRoundPen } from "lucide-react";
 import { logout } from "@/supabase/auth";
 import { useTranslation } from "react-i18next";
 import { APP_PATHS } from "@/routes/enum";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router";
 import { meAtom } from "@/store/auth";
 import { useAtom } from "jotai";
 

@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { userAtom } from "@/store/auth";
 import { useAtomValue } from "jotai";
 import AvatarDropdown from "./avatar";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router";
 import { APP_PATHS } from "@/routes/enum";
 
 const AuthBtn = () => {

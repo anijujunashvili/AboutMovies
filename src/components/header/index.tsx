@@ -1,7 +1,7 @@
 import Logo from "../logo";
 import RightSection from "./right-section";
 import NavBar from "./navbar";
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router";
 
 const Header = () => {
   const { lang } = useParams();

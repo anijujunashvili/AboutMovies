@@ -1,4 +1,4 @@
-import { NavLink, NavLinkRenderProps } from "react-router-dom";
+import { NavLink, NavLinkRenderProps } from "react-router";
 import { useTranslation } from "react-i18next";
 import { APP_PATHS } from "@/routes/enum";
 
