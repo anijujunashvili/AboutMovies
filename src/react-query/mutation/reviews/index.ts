@@ -7,8 +7,8 @@ export const useAddUserReview = () => {
   return useMutation({
     mutationKey: [MUTATION_KEYS.ADD_REVIEW],
     mutationFn: addReview,
-    // onSuccess: (data) => {
-    //   //   queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.GET_USER] });
-    // },
+    onSuccess: () => {
+      //   queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.GET_USER] });
+    },
   });
 };

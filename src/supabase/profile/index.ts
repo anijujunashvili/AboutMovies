@@ -38,16 +38,17 @@ export const fillUserInfo = async (payload: userInfoType) => {
     });
 };
 
-export const getUserInfo = async (id: string | undefined) => {
+export const getUserInfo = async (id: string) => {
   if (!id) {
     throw new Error("Id undefined");
   }
+
   return supabase
     .from("profiles")
     .select("*")
     .eq("user_id", id)
     .then((res) => {
-      return res?.data?.[0] as Database["public"]["Tables"]["profiles"]["Row"];
+      return res?.data?.[0] as userInfoType;
     });
 };
 
