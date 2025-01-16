@@ -2,10 +2,10 @@ import { useGetMovieInfo } from "@/react-query/query/movies";
 import { useParams } from "react-router-dom";
 import dayjs from "dayjs";
 import { Star } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import { useGetMovieActors } from "@/react-query/query/actors";
 import MovieActors from "./movie-actors";
 import { movieAct } from "@/types/actors";
+import MovieGenres from "./movies-genres";
 
 const MovieInfo = () => {
   const { lang, id } = useParams();
@@ -65,11 +65,7 @@ const MovieInfo = () => {
 
           <div className="flex w-2/3 cursor-pointer flex-col space-y-2">
             <div className="flex flex-wrap gap-2">
-              <Badge>Comedy</Badge>
-              <Badge>Fantacy</Badge>
-              <Badge>Drama</Badge>
-              <Badge>Comedy</Badge>
-              <Badge>Fantacy</Badge>
+              <MovieGenres />
             </div>
 
             <div className="flex flex-row flex-wrap gap-2 border-b py-4">

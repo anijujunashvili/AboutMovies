@@ -7,4 +7,5 @@ export enum QUERY_KEYS {
   GET_MOVIE_INFO = "get-movie-info",
   GET_MOVIE_ACTORS = "get-movie-actors",
   GET_USER_REVIEWS = "get-user-reviews",
+  GET_MOVIE_GENRES = "get-movie-genres",
 }
