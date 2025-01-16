@@ -28,7 +28,7 @@ const SearchBar = () => {
     ...searchDefValues,
     ...qs.parse(searchParams.toString()),
   };
-  const { control, handleSubmit, setValue } = useForm<searchType>({
+  const { control, handleSubmit, setValue } = useForm<File>({
     defaultValues: parsedDeafaultParams,
   });
 
