@@ -3,7 +3,7 @@ export type userInfoType = {
   name_en: string;
   phone: string;
   email: string;
-  image: File | null;
+  image?: string;
   id: string;
   created_at: string;
 };

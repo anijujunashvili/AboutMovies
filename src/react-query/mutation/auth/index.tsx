@@ -1,4 +1,4 @@
-import { register, login, logout } from "@/supabase/auth";
+import { register, login } from "@/supabase/auth";
 import { useMutation } from "@tanstack/react-query";
 import { MUTATION_KEYS } from "../enum";
 

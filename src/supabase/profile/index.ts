@@ -28,36 +28,13 @@ export const uploadUserPhoto = async (payload: test) => {
 };
 
 export const fillUserInfo = async (payload: userInfoType) => {
-  if (payload.image) {
-    supabase.storage
-      .from("movies")
-      .upload(payload?.image?.name, payload?.image)
-      .then((res) => {
-        return supabase
-          .from("profiles")
-          .upsert({
-            name_ka: payload.name_ka,
-            name_en: payload.name_en,
-            phone: payload.phone,
-            email: payload.email,
-            image: res.data?.fullPath,
-            id: payload.id,
-          })
-          .throwOnError()
-          .then((result) => {
-            console.log(result);
-            return result;
-          });
-      });
-  } else {
-    return supabase
-      .from("profiles")
-      .upsert(payload)
-      .throwOnError()
-      .then((result) => {
-        return result;
-      });
-  }
+  return supabase
+    .from("profiles")
+    .upsert(payload)
+    .throwOnError()
+    .then((result) => {
+      return result;
+    });
 };
 
 export const getUserInfo = async (id: string | number) => {

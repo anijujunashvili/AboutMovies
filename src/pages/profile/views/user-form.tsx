@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
 import { userInfoType } from "@/types/profile";
 import { useEditProfileInfo } from "@/react-query/mutation/profile";
-import { ChangeEvent, useEffect, useState } from "react";
+import { useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { UserFormSchema } from "../schema";
 import { QUERY_KEYS } from "@/react-query/query/enum";
@@ -18,7 +18,7 @@ const UserForm = () => {
 
   const queryClient = useQueryClient();
   const { t } = useTranslation();
-  const [file, setFile] = useState<File | null>(null);
+  // const [file, setFile] = useState<File | null>(null);
 
   const {
     register,
@@ -37,18 +37,16 @@ const UserForm = () => {
     setValue("name_en", me?.name_en as string);
   }, [me, setValue]);
 
-  const handleUploadImage = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      setFile(e.target.files[0]);
-      setValue("image", e.target.files[0]);
-    }
-  };
+  // const handleUploadImage = (e: ChangeEvent<HTMLInputElement>) => {
+  //   if (e.target.files) {
+  //     setFile(e.target.files[0]);
+  //     setValue("image", e.target.files[0]);
+  //   }
+  // };
   const userId = me?.id;
 
   const onSubmit = (data: userInfoType) => {
-    const obj = file
-      ? { ...data, image: file, id: String(userId) }
-      : { ...data, id: String(userId) };
+    const obj = { ...data, id: String(userId) };
 
     editUser(obj, {
       onSuccess: () => {
@@ -116,7 +114,7 @@ const UserForm = () => {
                 </div>
               </div>
               <div className="w-1/3 space-y-6">
-                {!me?.image && (
+                {/* {!me?.image && (
                   <div className="space-y-1">
                     <Label htmlFor="image"> Avatar</Label>
                     <Input
@@ -126,7 +124,7 @@ const UserForm = () => {
                       className="border-secondary focus:border-primary rounded-none border-b focus-visible:ring-0"
                     />
                   </div>
-                )}
+                )} */}
 
                 <div className="flex justify-end">
                   <Button className="mt-6 w-full">Edit</Button>
