@@ -17,10 +17,10 @@ const SearchComp = () => {
     if (value === "advanced") navigate("/en/search");
   };
   return (
-    <div className="hidden md:block md:col-span-3">
-      <div className="search-container flex flex-row rounded-sm ">
+    <div className="hidden md:col-span-3 md:block">
+      <div className="search-container flex flex-row rounded-sm">
         <Select onValueChange={handleSearch}>
-          <SelectTrigger className="w-auto rounded-r-none focus-visible:ring-0 gap-2">
+          <SelectTrigger className="w-auto gap-2 rounded-r-none focus-visible:ring-0">
             <SelectValue placeholder="All" />
           </SelectTrigger>
           <SelectContent>
@@ -42,7 +42,7 @@ const SearchComp = () => {
                 <span>Movies</span>
               </div>
             </SelectItem>
-            <SelectItem value="advanced" className="border-t rounded-none">
+            <SelectItem value="advanced" className="rounded-none border-t">
               <div className="flex flex-row gap-4">
                 <FileSearch className="w-4" />
                 <span>Advanced Search</span>
@@ -55,7 +55,7 @@ const SearchComp = () => {
           type="text"
           autoComplete="off"
           name="search"
-          className="rounded-none focus-visible:ring-0 focus-visible:bg-none focus:bg-none"
+          className="rounded-none focus:bg-none focus-visible:bg-none focus-visible:ring-0"
         />
         <Button className="rounded-l-none">
           <Search />

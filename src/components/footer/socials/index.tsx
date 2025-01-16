@@ -9,7 +9,7 @@ const Socials = () => {
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="h-5 w-5 text-secondary hover:text-primary"
+          className="text-secondary hover:text-primary h-5 w-5"
           fill="currentColor"
           viewBox="0 0 24 24"
         >
@@ -19,7 +19,7 @@ const Socials = () => {
       <Link to="https://www.facebook.com/ani.jujunashvili/" target="_blank">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="h-5 w-5 text-secondary hover:text-primary"
+          className="text-secondary hover:text-primary h-5 w-5"
           fill="currentColor"
           viewBox="0 0 24 24"
         >
@@ -29,7 +29,7 @@ const Socials = () => {
       <Link to="https://www.instagram.com/anijujunashvili" target="_blank">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="h-5 w-5 text-secondary hover:text-primary"
+          className="text-secondary hover:text-primary h-5 w-5"
           fill="currentColor"
           viewBox="0 0 24 24"
         >

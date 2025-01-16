@@ -15,7 +15,7 @@ import { useEffect } from "react";
 
 type searchType = {
   search: string;
-  from: string;
+  from: number;
 };
 
 const SearchBar = () => {
