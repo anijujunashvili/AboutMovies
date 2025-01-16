@@ -1,0 +1,14 @@
+{
+  "login": "Sign In",
+  "register": "Sign Up",
+  "email": "Email",
+  "ent_email": "Enter email",
+  "password": "Password",
+  "conf_pass": "Confirm Password",
+  "ent_pass": "Enter password",
+  "havt_account": "Don't have an account?",
+  "email_error": "Please enter a valid email address",
+  "pass_error": "Password must contain 6 characters",
+  "forgot": "Forgot password?",
+  "login_error": "Incorrect email or password"
+}

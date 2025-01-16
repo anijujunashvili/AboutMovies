@@ -1,0 +1,16 @@
+{
+  "login": "Sign In",
+  "register": "Sign Up",
+  "create": "Create an account",
+  "email": "Email",
+  "password": "Password",
+  "conf_pass": "Confirm Password",
+  "ent_email": "Enter Email",
+  "ent_pass": "Enter Password",
+  "have_account": "Already have an account?",
+  "email_error": "Please enter a valid email address",
+  "pass_error": "Password must contain 6 characters",
+  "err_conf_pass": "Passwords do not match.",
+  "pls_login": "Please log in to continue",
+  "success": "Your account has been created!"
+}

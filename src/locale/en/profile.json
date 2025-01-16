@@ -1,0 +1,11 @@
+{
+  "profile": "User profile",
+  "name_ka": "Full name (ka)",
+  "name_en": "Full name (en)",
+  "photo": "Avatar",
+  "delete": "Delete",
+  "add": "Add photo",
+  "edit": "Edit",
+  "email": "Email",
+  "phone": "Phone"
+}
