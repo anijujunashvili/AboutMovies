@@ -5,6 +5,7 @@ import {
   getPagMovies,
   getUserRatedMovies,
   getMovieInfo,
+  getSimilarMoviesList,
 } from "@/supabase/movies";
 
 export const useGetMovies = () => {
@@ -36,4 +37,11 @@ export const useGetPagMovies = (from: number, to: number) => {
   });
 
   return { moviesList, isPending };
+};
+
+export const useGetSimilarMoviesList = (m_id: number) => {
+  return useQuery({
+    queryKey: [QUERY_KEYS.GET_SIMILAR_MOVIES, m_id],
+    queryFn: () => getSimilarMoviesList(m_id),
+  });
 };

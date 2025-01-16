@@ -1,6 +1,10 @@
 import { supabase } from "..";
 import { searchWithPag } from "../utils";
-import { moviesWithPagType, moviesRateType } from "@/types/movies";
+import {
+  moviesWithPagType,
+  moviesRateType,
+  similarMoviesType,
+} from "@/types/movies";
 import { Tables } from "../supabase.types";
 
 export const getMovies = async () => {
@@ -79,5 +83,27 @@ export const rateMovie = async (payload: moviesRateType) => {
       });
   } catch (error) {
     console.log("error during rate movies", error);
+  }
+};
+
+export const getSimilarMoviesList = async (m_id: number) => {
+  try {
+    const result = await supabase
+      .from("movie_genres")
+      .select("g_id")
+      .eq("m_id", m_id);
+
+    const genresArray = result?.data?.map((a) => a.g_id);
+
+    const movies = await supabase
+      .from("movie_genres")
+      .select(
+        "g_id,movies(id,name_ka,name_en,description_ka,description_en,image,release_date)",
+      )
+      .filter("id", "in", `(${genresArray})`);
+
+    return movies.data as similarMoviesType[] | undefined;
+  } catch (error) {
+    console.log("Error during get movies list", error);
   }
 };

@@ -56,3 +56,18 @@ export type lastRatedType = {
   id: number;
   value: number;
 };
+
+type Movies = {
+  id: number;
+  name_ka: string;
+  name_en: string;
+  description_ka: string;
+  description_en: string;
+  image: string;
+  release_date: string;
+};
+
+export type similarMoviesType = {
+  g_id: number;
+  movies: Movies;
+};

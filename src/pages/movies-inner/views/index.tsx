@@ -1,5 +1,6 @@
 import MovieInfo from "./movie-info";
 import UserReviews from "./user-reviews";
+import SimilarMovies from "./similar-movies";
 
 const MovieInner = () => {
   return (
@@ -9,7 +10,9 @@ const MovieInner = () => {
           <MovieInfo />
           <UserReviews />
         </div>
-        <div className="border">Similar Movies</div>
+        <div>
+          <SimilarMovies />
+        </div>
       </div>
     </>
   );
