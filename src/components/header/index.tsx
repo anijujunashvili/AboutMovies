@@ -7,8 +7,8 @@ const Header = () => {
   const { lang } = useParams();
   const headerStyle =
     lang === "ka"
-      ? "border-primary ka flex h-[80px] items-center border-b-2 shadow-sm md:h-[60px]"
-      : "border-primary en flex h-[80px] items-center border-b-2 shadow-sm md:h-[60px]";
+      ? "border-primary pt-1 ka flex h-[80px] items-center border-b-2 shadow-sm md:h-[60px]"
+      : "border-primary pt-1 en flex h-[80px] items-center border-b-2 shadow-sm md:h-[60px]";
   return (
     <div className={headerStyle}>
       <div className="mx-auto w-full px-4 md:w-5/6">

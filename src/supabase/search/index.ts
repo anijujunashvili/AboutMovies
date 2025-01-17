@@ -33,10 +33,10 @@ export const getAdvancedSearchInfo = async (payload: advancedSearch) => {
       .ilike(searchColumn, `%${payload.search}%`)
       .range(payload.from, payload.to);
 
-    // const last = result.data
-    //   ? searchWithPag(result.data, result.count)
-    //   : result.data;
-
+    //     const last = result.data
+    //       ? searchWithPag(result.data, result.count)
+    //       : result.data;
+    // console.log(result.data);
     return result.data as moviesWithPagType[] | MapedActorType[];
   } catch (error) {
     console.log("Error during get movies list", error);

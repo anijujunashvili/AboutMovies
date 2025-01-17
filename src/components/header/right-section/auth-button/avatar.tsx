@@ -40,7 +40,7 @@ const AvatarDropdown = () => {
             </AvatarFallback>
           </Avatar>
         </DropdownMenuTrigger>
-        <DropdownMenuContent>
+        <DropdownMenuContent className="">
           <DropdownMenuItem>
             <div
               className="flex w-full flex-row justify-between"

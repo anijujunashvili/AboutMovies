@@ -12,10 +12,12 @@ import { useGetUserReviews } from "@/react-query/query/reviews";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import dayjs from "dayjs";
+import { useTranslation } from "react-i18next";
 
 const UserReviews = () => {
   const [me] = useAtom(meAtom);
   const { lang, id } = useParams();
+  const { t } = useTranslation();
 
   const {
     control,
@@ -57,7 +59,7 @@ const UserReviews = () => {
       <div className="mb-10 flex flex-col space-y-4">
         <div className="pb-4">
           <h3 className="text-secondary border-primary border-l-4 pl-3 text-3xl font-bold">
-            User Reviews
+            {t("movies.user_reviews")}
           </h3>
         </div>
         <div>
@@ -75,13 +77,13 @@ const UserReviews = () => {
                               r.image
                             }
                           />
-                          <AvatarFallback>
+                          <AvatarFallback className="dark:text-secondary font-bold">
                             {lang === "ka" ? r.name_ka[0] : r.name_en[0]}
                           </AvatarFallback>
                         </Avatar>
                       </div>
                       <div className="flex flex-col space-y-1">
-                        <div className="font-sm cursor-pointer text-xl">
+                        <div className="font-sm dark:text-secondary cursor-pointer text-xl font-bold">
                           {lang === "ka" ? r.name_ka : r.name_en}
                         </div>
                         <div className="text-muted-foreground text-sm">
@@ -89,7 +91,7 @@ const UserReviews = () => {
                         </div>
                       </div>
                     </div>
-                    <div className="cursor-pointer border-b pb-6 pt-2 italic">
+                    <div className="cursor-pointer border-b pb-6 pt-2 italic dark:border-gray-700 dark:text-gray-400">
                       {r?.comment}
                     </div>
                   </div>
@@ -109,8 +111,8 @@ const UserReviews = () => {
                   return (
                     <Textarea
                       onChange={onChange}
-                      placeholder="Type your message here."
-                      className="h-[100px] p-4"
+                      placeholder={t("movies.type_msg")}
+                      className="h-[100px] p-4 dark:border-gray-700"
                       value={value}
                     />
                   );
@@ -118,10 +120,16 @@ const UserReviews = () => {
               />
 
               <div className="flex flex-row justify-between">
-                <div>{errors.comment && <>ERORIA</>}</div>
+                <div>{errors.comment && <span>erori</span>}</div>
                 <div>
-                  <Button type="submit" disabled={isSubmitting}>
-                    {isSubmitting ? "Loading..." : "Add Review"}
+                  <Button
+                    type="submit"
+                    className="dark:text-white"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting
+                      ? t("layout.loading")
+                      : t("movies.add_review")}
                   </Button>
                 </div>
               </div>

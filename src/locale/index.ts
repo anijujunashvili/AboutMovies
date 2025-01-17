@@ -16,6 +16,12 @@ import ProfileEn from "./en/profile.json";
 import monthsKa from "./ka/months.json";
 import monthsEn from "./en/months.json";
 
+import actorKa from "./ka/actor.json";
+import actorEn from "./en/actor.json";
+
+import moviesKa from "./ka/movies.json";
+import moviesEn from "./en/movies.json";
+
 i18n.use(initReactI18next).init({
   resources: {
     ka: {
@@ -25,6 +31,8 @@ i18n.use(initReactI18next).init({
         layout: LayoutKa,
         profile: ProfileKa,
         months: monthsKa,
+        actor: actorKa,
+        movies: moviesKa,
       },
     },
     en: {
@@ -34,10 +42,12 @@ i18n.use(initReactI18next).init({
         layout: LayoutEn,
         profile: ProfileEn,
         months: monthsEn,
+        actor: actorEn,
+        movies: moviesEn,
       },
     },
   },
-  lng: "en",
+  //lng: "en",
   fallbackLng: "ka",
 
   interpolation: {

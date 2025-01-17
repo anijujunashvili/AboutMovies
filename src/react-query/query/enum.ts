@@ -11,4 +11,5 @@ export enum QUERY_KEYS {
   GET_SIMILAR_MOVIES = "get-similar-movies",
   GET_ACTOR_INFO = "get-actor-info",
   GET_ACTOR_MOVIES = "get-actor-movies",
+  GET_NEWS = "get-news",
 }

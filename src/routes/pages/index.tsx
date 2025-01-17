@@ -5,7 +5,6 @@ import { Route } from "react-router-dom";
 import Loader from "@/components/loader";
 
 const Home = lazy(() => import("@/pages/home/views"));
-const Actor = lazy(() => import("@/pages/actor/views"));
 
 export const PAGES_ROUTE = [
   <Route
@@ -25,14 +24,5 @@ export const PAGES_ROUTE = [
       </Suspense>
     }
     key={APP_PATHS.INDEX}
-  />,
-  <Route
-    path={APP_PATHS.ACTORS + "/:id"}
-    element={
-      <Suspense fallback={<Loader />}>
-        <Actor />
-      </Suspense>
-    }
-    key={APP_PATHS.ACTORS}
   />,
 ];

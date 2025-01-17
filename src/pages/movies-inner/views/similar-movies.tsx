@@ -4,9 +4,11 @@ import { Link, useParams } from "react-router-dom";
 import { useGetSimilarMoviesList } from "@/react-query/query/movies";
 import dayjs from "dayjs";
 import { APP_PATHS } from "@/routes/enum";
+import { useTranslation } from "react-i18next";
 
 const SimilarMovies = () => {
   const { id, lang } = useParams();
+  const { t } = useTranslation();
 
   const { data } = useGetSimilarMoviesList(Number(id));
 
@@ -16,11 +18,11 @@ const SimilarMovies = () => {
     <>
       <div className="flex flex-col">
         <div>
-          <h3 className="text-secondary border-primary mt-2 border-l-4 pl-3 text-3xl font-bold">
-            Similar Movies
+          <h3 className="text-secondary border-primary dark:text-secondary border-l-4 pl-3 text-3xl font-bold">
+            {t("movies.similar")}
           </h3>
         </div>
-        <div className="my-10 flex flex-col space-y-4">
+        <div className="mb-6 mt-10 flex flex-col space-y-4">
           {data
             ?.filter(
               (value, index, self) =>

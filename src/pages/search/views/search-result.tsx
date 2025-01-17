@@ -36,12 +36,14 @@ const SearchReasult = () => {
 
   const { data, isPending } = useGetAdvancedSearchInfo(payload);
 
-  const maxPage = data ? Math.ceil(data[0]?.count / itemsCountOnPage) : 1;
+  const maxPage = data ? data[0]?.count / itemsCountOnPage : 1;
   const pagination = [];
 
-  for (let i = 0; i < maxPage; i++) {
+  for (let i = 0; i < 15; i++) {
     pagination.push(i + 1);
   }
+
+  console.log(data);
 
   return (
     <div className="mb-8 mt-8 flex flex-col space-y-10">
@@ -81,7 +83,7 @@ const SearchReasult = () => {
         )}
       </div>
 
-      {pagination && maxPage > 1 && !isPending && (
+      {pagination && !isPending && (
         <div className="flex py-10">
           <Pagination>
             <PaginationContent>

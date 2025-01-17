@@ -1,0 +1,17 @@
+{
+  "similar": "Similar Movies",
+  "user_rating": "User rating",
+  "your_rating": "Your rating",
+  "stars": "Stars",
+  "nominations": "Total nominations",
+  "wins": "Wins",
+  "oscars": "Oscars",
+  "release_dt": "Release date",
+  "user_reviews": "User Reviews",
+  "type_msg": "Type your message here.",
+  "add_review": "Add Review",
+  "celebs": "Celebs",
+  "movies": "Movies",
+  "search": "Type text...",
+  "fav_movies": "Favorite movies"
+}

@@ -107,7 +107,7 @@ const MoviesList = ({ headline }: { headline: string }) => {
                           className="text-primary"
                           fill="#ffc300"
                         />
-                        <span>rame 8</span>
+                        <span className="dark:text-white">rame 8</span>
                       </div>
                       <div className="">
                         {checkIfIsRated(movie.id, false) ||
@@ -115,10 +115,10 @@ const MoviesList = ({ headline }: { headline: string }) => {
                           <div className="flex flex-row gap-1">
                             <Star
                               size={20}
-                              className="text-secondary cursor-pointer"
+                              className="text-secondary fill-secondary cursor-pointer"
                               fill="#283b7b"
                             />
-                            <span>
+                            <span className="dark:text-white">
                               {checkIfIsRated(movie.id, true)
                                 ? checkIfIsRated(movie.id, true)
                                 : lastRated.value}
@@ -197,8 +197,8 @@ const MoviesList = ({ headline }: { headline: string }) => {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="-left-2" />
-          <CarouselNext className="right-0" />
+          <CarouselPrevious className="-left-2 dark:text-white" />
+          <CarouselNext className="right-0 dark:text-white" />
         </Carousel>
       </div>
     </div>

@@ -10,6 +10,7 @@ import { shortenText } from "@/utils";
 import dayjs from "dayjs";
 import { APP_PATHS } from "@/routes/enum";
 import { searchType } from "@/types/search";
+import { useTranslation } from "react-i18next";
 
 const customStyles = {
   content: {
@@ -30,6 +31,7 @@ const SearchComp = () => {
   const navigate = useNavigate();
   const [modalIsOpen, setIsOpen] = useState(false);
   const { lang } = useParams();
+  const { t } = useTranslation();
   const { control, watch, reset } = useForm<searchType>({
     defaultValues: { search: "" },
   });
@@ -54,7 +56,10 @@ const SearchComp = () => {
   return (
     <>
       <div>
-        <Search onClick={openModal} className="mt-2 hidden md:block" />
+        <Search
+          onClick={openModal}
+          className="dark:text-secondary mt-2 hidden md:block"
+        />
         <Modal
           isOpen={modalIsOpen}
           onRequestClose={closeModal}
@@ -72,7 +77,7 @@ const SearchComp = () => {
                     <Input
                       onChange={onChange}
                       value={value}
-                      placeholder="Search..."
+                      placeholder={t("layout.search")}
                       className="focus:border-primary text-smoutline-none w-full rounded-none border-b bg-transparent py-3 pl-8 pr-8 shadow-none focus-visible:ring-0"
                     />
                   );
@@ -111,10 +116,10 @@ const SearchComp = () => {
               })}
             </div>
             <div
-              className="absolute bottom-4 cursor-pointer text-gray-500"
+              className="absolute bottom-4 cursor-pointer text-gray-500 hover:underline"
               onClick={toAdvancedSearch}
             >
-              Advanced search
+              {t("layout.advanced_search")}
             </div>
           </div>
         </Modal>

@@ -10,8 +10,8 @@ const Footer = () => {
   const { lang } = useParams();
   const footerStyle =
     lang === "ka"
-      ? "h-auto w-full border-t py-4 pt-16 ka"
-      : "h-auto w-full border-t py-4 pt-16 ge";
+      ? "h-auto w-full border-t dark:border-muted-foreground py-4 pt-16 ka"
+      : "h-auto w-full border-t  dark:border-muted py-4 pt-16 ge";
 
   return (
     <>
@@ -26,7 +26,7 @@ const Footer = () => {
           <div className="flex flex-row justify-center">
             <FooterMenu />
           </div>
-          <div className="flext-row md:text-md flex justify-between border-t py-4 text-sm">
+          <div className="flext-row md:text-md dark:border-muted flex justify-between border-t py-4 text-sm dark:text-gray-300">
             <div>
               {t("layout.rights")} &copy;{new Date().getFullYear()}
               <span className="en ml-2 cursor-pointer hover:underline">

@@ -8,7 +8,7 @@ const NavBar = () => {
     const { isActive } = props;
     return isActive
       ? "block py-1 px-3 text-primary"
-      : "block py-1 px-3 hover:text-primary";
+      : "block py-1 px-3 hover:text-primary dark:text-gray-300";
   };
   return (
     <div className="hidden justify-end pl-5 md:block md:grow">

@@ -1,6 +1,7 @@
 import { useGetActorInfo } from "@/react-query/query/actors";
 import { useParams } from "react-router-dom";
 import dayjs from "dayjs";
+import "dayjs/locale/ka";
 import { useTranslation } from "react-i18next";
 
 const ActorInfo = () => {
@@ -8,20 +9,12 @@ const ActorInfo = () => {
   const { t } = useTranslation();
   const { data: info } = useGetActorInfo(Number(id));
 
-  const year = dayjs(info?.born).format("YYYY");
-  const month = dayjs(info?.born).format("MMM");
-  const Birth = dayjs(info?.born).format("DD");
-  const dateTrans =
-    lang === "en"
-      ? dayjs(info?.born).format("DD MMM") + ", " + year
-      : Birth + " " + t(`months.${month}`) + ", " + year;
-
   return (
     <>
       <div className="mb-10 flex flex-col">
         <div className="flex flex-row justify-between gap-4">
           <div className="flex flex-col gap-1">
-            <div className="text-4xl">
+            <div className="dark:text-secondary pb-4 text-4xl font-bold">
               {lang == "ka" ? info?.name_ka : info?.name_en}
             </div>
           </div>
@@ -35,39 +28,46 @@ const ActorInfo = () => {
           </div>
 
           <div className="flex w-2/3 cursor-pointer flex-col">
-            <div className="flex flex-row gap-2 border-b py-4">
-              <div className="font-semibold">Born</div>
-              <div className="text-secondary">{dateTrans}</div>
+            <div className="flex flex-row gap-2 border-b py-4 dark:border-gray-700">
+              <div className="dark:text-secondary">{t("actor.born")}</div>
+              <div className="dark:text-secondary font-bold">
+                {dayjs(info?.born).locale(`${lang}`).format("DD MMM, YYYY")}
+              </div>
             </div>
 
-            <div className="flex flex-row gap-2 border-b py-4">
-              <div className="font-semibold">Birth Place</div>
-              <div className="text-secondary">
+            <div className="flex flex-row gap-2 border-b py-4 dark:border-gray-700">
+              <div className="dark:text-secondary">{t("actor.place")}</div>
+              <div className="dark:text-secondary font-bold">
                 {lang == "ka" ? info?.birth_place_ka : info?.birth_place_en}
               </div>
             </div>
-            <div className="flex flex-row gap-2 border-b py-4">
-              <div className="font-semibold">total nominations</div>
-              <div className="text-secondary">{info?.nominations}</div>
+            <div className="flex flex-row gap-2 border-b py-4 dark:border-gray-700">
+              <div className="dark:text-secondary">
+                {t("actor.nominations")}
+              </div>
+              <div className="dark:text-secondary font-bold">
+                {info?.nominations}
+              </div>
             </div>
-            <div className="flex flex-row gap-2 border-b py-4">
-              <div className="font-semibold">Wins</div>
-              <div className="text-secondary">{info?.wins}</div>
+            <div className="flex flex-row gap-2 border-b py-4 dark:border-gray-700">
+              <div className="dark:text-secondary">{t("actor.wins")}</div>
+              <div className="dark:text-secondary font-bold">{info?.wins}</div>
             </div>
-            <div className="flex flex-row gap-2 border-b py-4">
-              <div className="font-semibold">Oscars</div>
-              <div className="text-secondary">{info?.oscar}</div>
+            <div className="flex flex-row gap-2 border-b py-4 dark:border-gray-700">
+              <div className="dark:text-secondary">{t("actor.oscars")}</div>
+              <div className="dark:text-secondary font-bold">{info?.oscar}</div>
             </div>
           </div>
         </div>
-
-        <div className="flex flex-col">
+        <div className="mt-4 flex flex-col">
           <div>
             <h3 className="text-secondary border-primary mb-4 mt-2 border-l-4 pl-3 text-3xl font-bold">
-              Mini Bio
+              {t("actor.bio")}
             </h3>
           </div>
-          <div>{lang === "ka" ? info?.biography_ka : info?.biography_en}</div>
+          <div className="dark:text-secondary">
+            {lang === "ka" ? info?.biography_ka : info?.biography_en}
+          </div>
         </div>
       </div>
     </>

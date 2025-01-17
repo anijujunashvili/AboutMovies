@@ -3,6 +3,7 @@
   "about": "About us",
   "movies": "Movies",
   "search": "Search",
+  "advanced_search": "Advanced search",
   "rights": "All rights reserved.",
   "top_20": "Top 20 Movies",
   "jobs": "Jobs",
@@ -12,5 +13,8 @@
   "logout": "LogOut",
   "joined": "Joined",
   "loading": "Loading...",
-  "rated": "Your rating has been accepted."
+  "rated": "Your rating has been accepted.",
+  "actors": "Actors",
+  "top_movies": "Top Movies",
+  "top_news": "Top News"
 }

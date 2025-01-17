@@ -5,14 +5,22 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { Database } from "@/supabase/supabase.types";
+import { useParams } from "react-router-dom";
+import dayjs from "dayjs";
+import { shortenText } from "@/utils";
+import "dayjs/locale/ka";
 
 const MovieNews = ({
   headline,
   orientation,
+  news,
 }: {
   headline: string;
   orientation: "vertical" | "horizontal";
+  news: Database["public"]["Tables"]["news"]["Row"][];
 }) => {
+  const { lang } = useParams();
   const orient = !orientation ? "horizontal" : orientation;
   const contentStyle =
     orientation === "vertical"
@@ -22,7 +30,7 @@ const MovieNews = ({
     <div className="mb-14 mt-10 flex">
       <div className="mx-auto w-full flex-col space-y-6 px-4 md:w-5/6">
         <div>
-          <h3 className="text-secondary border-primary dark:text-muted-foreground dark:border-primary-foreground mb-3 border-l-4 pl-2 text-3xl font-bold">
+          <h3 className="text-secondary border-primary mb-4 border-l-4 pl-3 text-3xl font-bold">
             {headline}
           </h3>
         </div>
@@ -35,23 +43,27 @@ const MovieNews = ({
           className="w-full"
         >
           <CarouselContent className={contentStyle}>
-            {Array.from({ length: 12 }).map((_, index) => (
+            {news?.map((n) => (
               <CarouselItem
-                key={index}
-                className="relative h-full cursor-pointer space-y-3"
+                key={n.id}
+                className="relative h-full cursor-pointer space-y-3 pr-2"
               >
-                <div className="flex flex-row space-x-3">
+                <div className="flex flex-row space-x-3 border-r">
                   <div className="w-1/3">
                     <img
-                      src="https://gizmodo.com/app/uploads/2025/01/shrek.jpg"
-                      className="rounded-md"
+                      src={import.meta.env.VITE_SUPABASE_STORAGE_URL + n.image}
+                      className="rounded-md dark:border"
                     />
                   </div>
                   <div className="mr-3 w-2/3 space-y-3">
-                    <h4 className="font-semibold hover:underline">
-                      Universal Shuffles Shrek and the Minions Around for Its
+                    <h4 className="text-sm font-semibold hover:underline dark:text-white">
+                      {lang === "ka"
+                        ? shortenText(String(n.title_ka), 100)
+                        : shortenText(String(n.title_en), 80)}
                     </h4>
-                    <span className="text-xs">11 jan</span>
+                    <span className="text-xs text-gray-600">
+                      {dayjs(n.created_at).locale(`${lang}`).format("DD MMM")}
+                    </span>
                   </div>
                 </div>
               </CarouselItem>

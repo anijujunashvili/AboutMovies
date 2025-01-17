@@ -7,7 +7,7 @@ const Logo = () => {
       <Link to={APP_PATHS.HOME}>
         <div className="Logo en cursor-pointer text-2xl font-bold">
           <span className="text-primary">About</span>
-          <span className="text-secondary">Movies</span>
+          <span className="text-secondary dark:text-secondary">Movies</span>
         </div>
       </Link>
     </div>

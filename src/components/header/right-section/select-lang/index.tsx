@@ -41,7 +41,7 @@ const SelectLang = () => {
             <ChevronDown />
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end">
+        <DropdownMenuContent align="end" className="mt-2">
           <DropdownMenuItem onClick={() => changeLang("en")}>
             {t(`layout.en`)}
           </DropdownMenuItem>

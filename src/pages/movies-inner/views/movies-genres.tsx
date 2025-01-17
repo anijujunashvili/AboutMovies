@@ -14,7 +14,7 @@ const MovieGenres = () => {
       {isPending && t("layout.loading")}
       {genres?.map((g) => {
         return (
-          <Badge key={g.id}>
+          <Badge key={g.id} className="dark:text-white">
             {lang == "ka" ? g.genres.name_ka : g.genres.name_en}
           </Badge>
         );

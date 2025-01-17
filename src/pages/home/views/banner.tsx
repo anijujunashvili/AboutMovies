@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/carousel";
 import { useRef } from "react";
 
-const CarouselView = () => {
+const Banner = () => {
   const plugin = useRef(Autoplay({ delay: 5000, stopOnInteraction: true }));
 
   return (
@@ -35,4 +35,4 @@ const CarouselView = () => {
   );
 };
 
-export default CarouselView;
+export default Banner;

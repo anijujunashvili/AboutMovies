@@ -4,20 +4,20 @@ import { Link, useParams } from "react-router-dom";
 import { useGetActorMoviesList } from "@/react-query/query/actors";
 import dayjs from "dayjs";
 import { APP_PATHS } from "@/routes/enum";
+import { useTranslation } from "react-i18next";
 
 const ActorMovies = () => {
   const { id, lang } = useParams();
+  const { t } = useTranslation();
 
   const { data } = useGetActorMoviesList(Number(id));
-
-  console.log("movies", data);
 
   return (
     <>
       <div className="flex flex-col">
         <div>
           <h3 className="text-secondary border-primary mt-2 border-l-4 pl-3 text-3xl font-bold">
-            Actor Movies
+            {t("actor.movies")}
           </h3>
         </div>
         <div className="my-10 flex flex-col space-y-4">

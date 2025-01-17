@@ -27,7 +27,7 @@ const MovieActors: React.FC<ActorsPropsType> = ({ actors }) => {
               <HoverCardTrigger>
                 <Link
                   to={"/" + lang + "/" + APP_PATHS.ACTORS + "/" + a?.actors?.id}
-                  className="hover:underline"
+                  className="dark:text-secondary font-bold hover:underline"
                 >
                   {lang === "ka" ? a?.actors?.name_ka : a?.actors?.name_en}
                 </Link>
@@ -51,7 +51,7 @@ const MovieActors: React.FC<ActorsPropsType> = ({ actors }) => {
                     <h4 className="text-sm font-semibold">
                       {lang === "ka" ? a?.actors?.name_ka : a?.actors?.name_en}
                     </h4>
-                    <div className="flex items-center pt-2">
+                    <div className="flex items-center">
                       <CalendarDays className="mr-2 h-4 w-4 opacity-70" />
                       <span className="text-muted-foreground text-xs">
                         {a?.actors?.born}

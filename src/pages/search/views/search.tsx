@@ -12,6 +12,7 @@ import { useForm, Controller } from "react-hook-form";
 import { useSearchParams } from "react-router-dom";
 import qs from "qs";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 type searchType = {
   search: string;
@@ -20,6 +21,7 @@ type searchType = {
 
 const SearchBar = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const { t } = useTranslation();
   const searchDefValues = {
     search: "",
     from: "movies",
@@ -54,20 +56,20 @@ const SearchBar = () => {
           <Controller
             render={({ field }) => (
               <Select onValueChange={field.onChange} defaultValue={field.value}>
-                <SelectTrigger className="w-auto gap-2 rounded-r-none focus-visible:ring-0">
+                <SelectTrigger className="dark:text-secondary w-auto gap-2 rounded-r-none focus-visible:ring-0">
                   <SelectValue placeholder="Movies" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="celebs">
                     <div className="flex flex-row gap-4">
                       <Users className="w-4" />
-                      <span>Celebs</span>
+                      <span>{t("movies.celebs")}</span>
                     </div>
                   </SelectItem>
                   <SelectItem value="movies">
                     <div className="flex flex-row gap-4">
                       <Tv className="w-4" />
-                      <span>Movies</span>
+                      <span>{t("movies.movies")}</span>
                     </div>
                   </SelectItem>
                 </SelectContent>
@@ -85,8 +87,8 @@ const SearchBar = () => {
               <Input
                 onChange={onChange}
                 value={value}
-                className="rounded-none border focus-visible:ring-0"
-                placeholder="Type text..."
+                className="dark:text-secondary rounded-none border focus-visible:ring-0 dark:border-gray-700"
+                placeholder={t("movies.search")}
                 autoComplete="off"
               />
             )}

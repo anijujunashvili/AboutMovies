@@ -6,6 +6,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useTranslation } from "react-i18next";
 
 import { Link, useParams } from "react-router-dom";
 import { useGetActors } from "@/react-query/query/actors";
@@ -13,16 +14,16 @@ import { APP_PATHS } from "@/routes/enum";
 
 const BornToday = () => {
   const { lang } = useParams();
+  const { t } = useTranslation();
   const actorsList = useGetActors();
 
   return (
     <div className="mb-14 mt-10 flex">
       <div className="mx-auto w-full flex-col space-y-4 px-4 md:w-5/6">
         <div>
-          <h3 className="text-secondary border-primary dark:text-muted-foreground dark:border-primary-foreground mb-3 border-l-4 pl-2 text-3xl font-bold">
-            Born Today
+          <h3 className="text-secondary border-primary mb-6 border-l-4 pl-2 text-3xl font-bold">
+            {t("layout.actors")}
           </h3>
-          <p>People born on January 12</p>
         </div>
 
         <Carousel
