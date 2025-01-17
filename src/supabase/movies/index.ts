@@ -1,10 +1,6 @@
 import { supabase } from "..";
 import { searchWithPag } from "../utils";
-import {
-  moviesWithPagType,
-  moviesRateType,
-  similarMoviesType,
-} from "@/types/movies";
+import { moviesWithPagType, moviesRateType, Movies } from "@/types/movies";
 import { Tables } from "../supabase.types";
 
 export const getMovies = async () => {
@@ -102,7 +98,9 @@ export const getSimilarMoviesList = async (m_id: number) => {
       )
       .filter("id", "in", `(${genresArray})`);
 
-    return movies.data as similarMoviesType[] | undefined;
+    const moviesArray = movies.data?.map((genre) => genre.movies);
+
+    return moviesArray as Movies[] | undefined;
   } catch (error) {
     console.log("Error during get movies list", error);
   }

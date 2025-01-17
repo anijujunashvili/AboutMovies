@@ -57,7 +57,7 @@ export type lastRatedType = {
   value: number;
 };
 
-type Movies = {
+export type Movies = {
   id: number;
   name_ka: string;
   name_en: string;
