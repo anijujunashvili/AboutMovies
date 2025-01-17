@@ -8,6 +8,10 @@ export type actorType = {
   nominations: number;
   oscar: number;
   wins: number;
+  birth_place_ka: string;
+  birth_place_en: string;
+  biography_ka: string;
+  biography_en: string;
 };
 
 export type MapedActorType = {

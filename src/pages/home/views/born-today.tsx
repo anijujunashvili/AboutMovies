@@ -33,7 +33,10 @@ const BornToday = () => {
         >
           <CarouselContent className="w-full space-x-6">
             {actorsList?.map((act) => (
-              <Link to={APP_PATHS.ACTOR + "/" + act.id} key={act.id}>
+              <Link
+                to={"/" + lang + "/" + APP_PATHS.ACTORS + "/" + act.id}
+                key={act.id}
+              >
                 <CarouselItem className="relative space-y-3 bg-opacity-10">
                   <Avatar className="h-[350px] w-[350px] md:h-[210px] md:w-[210px]">
                     <AvatarImage

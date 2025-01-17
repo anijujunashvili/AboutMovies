@@ -7,6 +7,8 @@ import Loader from "@/components/loader";
 const Search = lazy(() => import("@/pages/search/views"));
 const MovieInfo = lazy(() => import("@/pages/movies-inner/views"));
 
+const ActorInfo = lazy(() => import("@/pages/actors-inner/views"));
+
 export const DETAIL_PAGES_ROUTE = [
   <Route
     path={APP_PATHS.SEARCH}
@@ -25,5 +27,14 @@ export const DETAIL_PAGES_ROUTE = [
       </Suspense>
     }
     key={APP_PATHS.MOVIES + "/:id"}
+  />,
+  <Route
+    path={APP_PATHS.ACTORS + "/:id"}
+    element={
+      <Suspense fallback={<Loader />}>
+        <ActorInfo />
+      </Suspense>
+    }
+    key={APP_PATHS.ACTORS + "/:id"}
   />,
 ];

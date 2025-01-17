@@ -7,6 +7,8 @@ import {
 } from "@/components/ui/hover-card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { CalendarDays } from "lucide-react";
+import { Link } from "react-router-dom";
+import { APP_PATHS } from "@/routes/enum";
 
 const MovieActors: React.FC<ActorsPropsType> = ({ actors }) => {
   const { lang } = useParams();
@@ -23,7 +25,12 @@ const MovieActors: React.FC<ActorsPropsType> = ({ actors }) => {
             </Link> */}
             <HoverCard>
               <HoverCardTrigger>
-                {lang === "ka" ? a?.actors?.name_ka : a?.actors?.name_en}
+                <Link
+                  to={"/" + lang + "/" + APP_PATHS.ACTORS + "/" + a?.actors?.id}
+                  className="hover:underline"
+                >
+                  {lang === "ka" ? a?.actors?.name_ka : a?.actors?.name_en}
+                </Link>
               </HoverCardTrigger>
               <HoverCardContent className="w-80">
                 <div className="flex justify-start space-x-4">

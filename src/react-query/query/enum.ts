@@ -9,4 +9,6 @@ export enum QUERY_KEYS {
   GET_USER_REVIEWS = "get-user-reviews",
   GET_MOVIE_GENRES = "get-movie-genres",
   GET_SIMILAR_MOVIES = "get-similar-movies",
+  GET_ACTOR_INFO = "get-actor-info",
+  GET_ACTOR_MOVIES = "get-actor-movies",
 }

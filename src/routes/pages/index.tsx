@@ -27,12 +27,12 @@ export const PAGES_ROUTE = [
     key={APP_PATHS.INDEX}
   />,
   <Route
-    path={APP_PATHS.ACTOR + "/:id"}
+    path={APP_PATHS.ACTORS + "/:id"}
     element={
       <Suspense fallback={<Loader />}>
         <Actor />
       </Suspense>
     }
-    key={APP_PATHS.ACTOR}
+    key={APP_PATHS.ACTORS}
   />,
 ];

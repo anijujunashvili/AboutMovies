@@ -5,7 +5,7 @@ export enum APP_PATHS {
   HOME = "home",
   ABOUT = "about",
   MOVIES = "movies",
-  ACTOR = "actor",
+  ACTORS = "actors",
   INDEX = "index",
   SEARCH = "search",
 }
