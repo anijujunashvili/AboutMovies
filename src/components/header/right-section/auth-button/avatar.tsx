@@ -29,7 +29,7 @@ const AvatarDropdown = () => {
   return (
     <>
       <DropdownMenu>
-        <DropdownMenuTrigger className="focus:none focus:ring-0 focus-visible:border-none">
+        <DropdownMenuTrigger className="focus:none rounded-full focus:ring-0 focus-visible:border-none">
           <Avatar className="border">
             <AvatarImage
               src={import.meta.env.VITE_SUPABASE_STORAGE_URL + me?.image}
