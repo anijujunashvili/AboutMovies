@@ -7,7 +7,7 @@ const FooterMenu = () => {
   return (
     <>
       <div>
-        <ul className="mt-4 flex space-x-4 p-4 text-sm font-normal md:mt-0 md:flex-row md:border-0 md:p-0 dark:border-gray-700 dark:text-gray-300">
+        <ul className="mt-4 flex flex-wrap items-center space-x-4 py-4 text-xs font-normal md:mt-0 md:flex-row md:justify-between md:border-0 md:p-0 md:text-sm dark:border-gray-700 dark:text-gray-300">
           <li>
             <Link to="/home" className="hover:underline" aria-current="page">
               {t("layout.home")}
@@ -21,11 +21,6 @@ const FooterMenu = () => {
           <li>
             <Link to="movies" className="hover:underline">
               {t("layout.movies")}
-            </Link>
-          </li>
-          <li>
-            <Link to="about" className="hover:underline">
-              {t("layout.top_20")}
             </Link>
           </li>
           <li>

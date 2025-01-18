@@ -8,8 +8,8 @@ const DetailPagesLayout = () => {
   const { lang } = useParams();
   const mainStyle =
     lang === "ka"
-      ? "mx-auto min-h-screen w-5/6 ka"
-      : "mx-auto min-h-screen w-5/6 en";
+      ? "mx-auto min-h-screen px-4 lg:w-5/6 ka"
+      : "mx-auto min-h-screen px-4 lg:w-5/6 en";
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <Header />

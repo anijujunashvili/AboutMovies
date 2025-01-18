@@ -19,7 +19,7 @@ const AuthBtn = () => {
         <AvatarDropdown />
       ) : (
         <Link to={`/${lang}/${APP_PATHS.LOGIN}`}>
-          <Button className="hidden rounded-full md:block">
+          <Button className="rounded-full md:block dark:text-white">
             {t("login.login")}
           </Button>
         </Link>

@@ -15,7 +15,7 @@ const HomePage = () => {
   return (
     <>
       <Banner />
-      <MoviesList headline={t("layout.top_news")} />
+      <MoviesList headline={t("layout.movies")} />
       <BornToday />
       <MovieNews
         headline={t("layout.top_news")}

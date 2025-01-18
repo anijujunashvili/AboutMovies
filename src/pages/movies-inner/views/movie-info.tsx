@@ -23,7 +23,7 @@ const MovieInfo = () => {
   return (
     <>
       <div className="mb-10 flex flex-col">
-        <div className="flex flex-row justify-between gap-4">
+        <div className="flex flex-col justify-between gap-4 md:flex-row">
           <div className="flex flex-col gap-1">
             <div className="dark:text-secondary text-4xl">
               {lang == "ka" ? info?.name_ka : info?.name_en}
@@ -32,9 +32,9 @@ const MovieInfo = () => {
               {dayjs(info?.release_date).format("YYYY")}
             </span>
           </div>
-          <div className="flex flex-row space-x-4">
+          <div className="flex flex-col justify-end space-y-4 md:flex-row md:space-x-4 md:space-y-0">
             <div className="flex flex-col">
-              <div className="dark:text-secondary text-right text-sm text-gray-700">
+              <div className="dark:text-secondary text-left text-sm text-gray-700 md:text-right">
                 {t("movies.user_rating")}
               </div>
               <div className="dark:text-secondary flex flex-row gap-2 text-gray-700">
@@ -44,7 +44,7 @@ const MovieInfo = () => {
             </div>
 
             <div className="">
-              <div className="dark:text-secondary text-right text-sm text-gray-700">
+              <div className="dark:text-secondary text-left text-sm text-gray-700 md:text-right">
                 {t("movies.your_rating")}
               </div>
               <div className="text-md dark:text-secondary flex flex-row gap-2 text-gray-700">
@@ -58,15 +58,15 @@ const MovieInfo = () => {
             </div>
           </div>
         </div>
-        <div className="my-4 flex flex-row gap-6">
-          <div className="flex w-1/3">
+        <div className="my-4 flex flex-col gap-6 md:flex-row">
+          <div className="flex md:w-1/3">
             <img
               src={import.meta.env.VITE_SUPABASE_STORAGE_URL + info?.image}
-              className="rounded-sm"
+              className="h-[200px] rounded-sm md:h-full"
             />
           </div>
 
-          <div className="flex w-2/3 cursor-pointer flex-col space-y-2">
+          <div className="flex cursor-pointer flex-col space-y-2 md:w-2/3">
             <div className="flex flex-wrap gap-2">
               <MovieGenres />
             </div>

@@ -34,19 +34,18 @@ const Register = () => {
   };
   const { t } = useTranslation();
   return (
-    <div className="min-h-screen bg-white font-[sans-serif] md:h-screen">
+    <div className="bg-background min-h-screen font-[sans-serif] md:h-screen">
       <div
-        className="grid h-full items-center gap-8 md:grid-cols-2"
+        className="grid h-full min-h-screen grid-cols-1 items-center gap-8 bg-contain bg-repeat-round md:grid-cols-2 md:bg-cover md:bg-no-repeat"
         style={{
           backgroundImage:
             "url(https://images.unsplash.com/photo-1499951360447-b19be8fe80f5)",
-          backgroundSize: "cover",
         }}
       >
         <div className="p-4 max-md:order-1"></div>
 
         {isSuccess ? (
-          <div className="bg-secondary flex h-full items-center justify-center p-6 md:p-8 lg:ml-auto lg:w-11/12">
+          <div className="bg-secondary dark:bg-background flex h-full items-center justify-center p-6 md:p-8 lg:ml-auto lg:w-11/12">
             <SuccessMsg
               lgText="registration.success"
               smText="registration.pls_login"
@@ -55,7 +54,7 @@ const Register = () => {
             />
           </div>
         ) : (
-          <div className="bg-secondary flex h-full items-center p-6 md:p-8 lg:ml-auto lg:w-11/12">
+          <div className="bg-secondary dark:bg-background flex h-full items-center p-6 md:p-8 lg:ml-auto lg:w-11/12">
             <form
               className="mx-auto w-full max-w-lg"
               onSubmit={handleSubmit(onSubmit)}

@@ -71,8 +71,8 @@ const MoviesList = ({ headline }: { headline: string }) => {
     }
   };
   return (
-    <div className="mb-14 mt-10 flex">
-      <div className="mx-auto w-4/5 flex-col space-y-10">
+    <div className="mb-14 mt-6 flex lg:mt-10">
+      <div className="mx-auto w-full flex-col space-y-10 px-4 lg:w-5/6">
         <h3 className="text-secondary border-primary border-l-4 pl-3 text-3xl font-bold">
           {headline}
         </h3>
@@ -87,12 +87,12 @@ const MoviesList = ({ headline }: { headline: string }) => {
             {Movies?.map((movie) => (
               <CarouselItem
                 key={movie.id}
-                className="shadow-sx md:basis-1/2 lg:basis-1/5"
+                className="shadow-sx basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5"
               >
                 <div className="max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800">
                   <Link to={`/${lang}/${APP_PATHS.MOVIES}/${movie.id}`}>
                     <img
-                      className="mx-auto h-[300px] w-full rounded-t-lg"
+                      className="mx-auto h-[350px] w-full rounded-t-lg md:h-[300px]"
                       src={
                         import.meta.env.VITE_SUPABASE_STORAGE_URL + movie.image
                       }

@@ -100,42 +100,44 @@ const UserReviews = () => {
             </ScrollArea>
           )}
         </div>
-        <div>
-          <div className="grid w-full gap-2">
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-              <Controller
-                name="comment"
-                control={control}
-                rules={{ required: true }}
-                render={({ field: { onChange, value } }) => {
-                  return (
-                    <Textarea
-                      onChange={onChange}
-                      placeholder={t("movies.type_msg")}
-                      className="h-[100px] p-4 dark:border-gray-700"
-                      value={value}
-                    />
-                  );
-                }}
-              />
+        {me?.id && (
+          <div>
+            <div className="grid w-full gap-2">
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+                <Controller
+                  name="comment"
+                  control={control}
+                  rules={{ required: true }}
+                  render={({ field: { onChange, value } }) => {
+                    return (
+                      <Textarea
+                        onChange={onChange}
+                        placeholder={t("movies.type_msg")}
+                        className="dark:text-secondary h-[100px] p-4 dark:border-gray-700"
+                        value={value}
+                      />
+                    );
+                  }}
+                />
 
-              <div className="flex flex-row justify-between">
-                <div>{errors.comment && <span>erori</span>}</div>
-                <div>
-                  <Button
-                    type="submit"
-                    className="dark:text-white"
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting
-                      ? t("layout.loading")
-                      : t("movies.add_review")}
-                  </Button>
+                <div className="flex flex-row justify-between">
+                  <div>{errors.comment && <span>erori</span>}</div>
+                  <div>
+                    <Button
+                      type="submit"
+                      className="dark:text-white"
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting
+                        ? t("layout.loading")
+                        : t("movies.add_review")}
+                    </Button>
+                  </div>
                 </div>
-              </div>
-            </form>
+              </form>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </>
   );

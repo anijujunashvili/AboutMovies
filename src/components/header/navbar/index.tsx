@@ -7,8 +7,8 @@ const NavBar = () => {
   const ActiveMenu = (props: NavLinkRenderProps) => {
     const { isActive } = props;
     return isActive
-      ? "block py-1 px-3 text-primary"
-      : "block py-1 px-3 hover:text-primary dark:text-gray-300";
+      ? "block py-1 px-3 text-primary text-sm lg:text-md"
+      : "block py-1 px-3 hover:text-primary text-sm lg:text-md dark:text-gray-300";
   };
   return (
     <div className="hidden justify-end pl-5 md:block md:grow">
@@ -28,7 +28,7 @@ const NavBar = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink to={APP_PATHS.MOVIES} className={ActiveMenu}>
+          <NavLink to={APP_PATHS.SEARCH} className={ActiveMenu}>
             {t("layout.movies")}
           </NavLink>
         </li>

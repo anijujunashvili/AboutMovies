@@ -39,18 +39,17 @@ const Login = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="min-h-screen bg-white font-[sans-serif] md:h-screen">
+    <div className="bg-background min-h-screen font-[sans-serif] md:h-screen">
       <div
-        className="grid h-full items-center gap-8 md:grid-cols-2"
+        className="grid h-full min-h-screen grid-cols-1 items-center bg-contain bg-repeat-round md:grid-cols-2 md:gap-8 md:bg-cover md:bg-no-repeat"
         style={{
           backgroundImage:
             "url(https://images.unsplash.com/photo-1499951360447-b19be8fe80f5)",
-          backgroundSize: "cover",
         }}
       >
-        <div className="p-4 max-md:order-1"></div>
+        <div className="max-md:order-1 md:p-4"></div>
 
-        <div className="bg-secondary flex h-full items-center p-6 md:p-8 lg:ml-auto lg:w-11/12">
+        <div className="bg-secondary dark:bg-background flex h-full items-center p-6 md:p-8 lg:ml-auto lg:w-11/12">
           <form
             className="mx-auto w-full max-w-lg"
             onSubmit={handleSubmit(onSubmit)}
@@ -137,14 +136,6 @@ const Login = () => {
                     className="text-primary ml-1 font-semibold hover:underline"
                   >
                     {t("login.register")}
-                  </Link>
-                </p>
-                <p className="mt-8 text-sm text-white">
-                  <Link
-                    to={`/${lang}/${APP_PATHS.REGISTER}`}
-                    className="hover:underline"
-                  >
-                    {t("login.forgot")}
                   </Link>
                 </p>
               </div>
