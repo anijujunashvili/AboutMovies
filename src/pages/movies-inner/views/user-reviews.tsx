@@ -58,7 +58,7 @@ const UserReviews = () => {
     <>
       <div className="mb-10 flex flex-col space-y-4">
         <div className="pb-4">
-          <h3 className="text-secondary border-primary border-l-4 pl-3 text-3xl font-bold">
+          <h3 className="text-secondary font-primaryRegular border-primary border-l-4 pl-3 pt-1 text-3xl">
             {t("movies.user_reviews")}
           </h3>
         </div>

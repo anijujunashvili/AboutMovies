@@ -25,7 +25,7 @@ const MovieInfo = () => {
       <div className="mb-10 flex flex-col">
         <div className="flex flex-col justify-between gap-4 md:flex-row">
           <div className="flex flex-col gap-1">
-            <div className="dark:text-secondary text-4xl">
+            <div className="dark:text-secondary font-primaryRegular text-4xl font-bold">
               {lang == "ka" ? info?.name_ka : info?.name_en}
             </div>
             <span className="text-sm text-gray-700">

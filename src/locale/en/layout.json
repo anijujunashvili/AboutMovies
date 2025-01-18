@@ -16,5 +16,7 @@
   "rated": "Your rating has been accepted.",
   "actors": "Actors",
   "top_movies": "Top Movies",
-  "top_news": "Top News"
+  "top_news": "Top News",
+  "prev": "Previous",
+  "next": "Next"
 }

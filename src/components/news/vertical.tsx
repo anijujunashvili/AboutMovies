@@ -16,7 +16,7 @@ const NewsForInnerPages = ({
     <div className="mb-14 flex">
       <div className="mx-auto w-full flex-col space-y-8 px-4 md:w-5/6">
         <div>
-          <h3 className="text-secondary border-primary mb-3 border-l-4 pl-3 text-3xl font-bold">
+          <h3 className="text-secondary font-primaryRegular border-primary mb-3 border-l-4 pl-3 pt-1 text-3xl font-bold">
             {headline}
           </h3>
         </div>

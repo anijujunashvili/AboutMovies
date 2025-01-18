@@ -12,13 +12,11 @@ const SimilarMovies = () => {
 
   const { data } = useGetSimilarMoviesList(Number(id));
 
-  console.log("movies", data);
-
   return (
     <>
       <div className="flex flex-col">
-        <div>
-          <h3 className="text-secondary border-primary dark:text-secondary border-l-4 pl-3 text-3xl font-bold">
+        <div className="border-primary flex items-center border-l-4 pl-3">
+          <h3 className="text-secondary font-primaryRegular dark:text-secondary pt-1 text-3xl font-bold uppercase">
             {t("movies.similar")}
           </h3>
         </div>

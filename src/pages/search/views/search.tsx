@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button";
 import { useForm, Controller } from "react-hook-form";
 import { useSearchParams } from "react-router-dom";
 import qs from "qs";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 type searchType = {
@@ -22,9 +22,10 @@ type searchType = {
 const SearchBar = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { t } = useTranslation();
+  const [selectValue, SetSelectValue] = useState("movies");
   const searchDefValues = {
     search: "",
-    from: "movies",
+    from: selectValue,
   };
   const parsedDeafaultParams = {
     ...searchDefValues,
@@ -35,12 +36,14 @@ const SearchBar = () => {
   });
 
   useEffect(() => {
+    searchParams.set("from", selectValue);
     qs.parse(searchParams.toString());
     const newSeach = searchParams.get("search");
     if (newSeach) {
       setValue("search", newSeach?.toString());
     }
-  }, [searchParams, setValue]);
+    setSearchParams(searchParams.toString());
+  }, [searchParams, setValue, selectValue, setSearchParams]);
 
   const onSubmit = () => {
     const params = qs.stringify(control._formValues, { skipNulls: true });
@@ -49,15 +52,19 @@ const SearchBar = () => {
     }
   };
 
+  const handleChange = (value: string) => {
+    SetSelectValue(value);
+  };
+
   return (
     <div className="hidden md:col-span-3 md:block">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="search-container flex flex-row rounded-sm">
           <Controller
-            render={({ field }) => (
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
+            render={() => (
+              <Select value={selectValue} onValueChange={handleChange}>
                 <SelectTrigger className="dark:text-secondary w-auto gap-2 rounded-r-none focus-visible:ring-0">
-                  <SelectValue placeholder="Movies" />
+                  <SelectValue placeholder={selectValue} />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="celebs">

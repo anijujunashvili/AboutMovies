@@ -15,11 +15,13 @@ import { useSearchParams, useParams, Link } from "react-router-dom";
 import { APP_PATHS } from "@/routes/enum";
 import { shortenText } from "@/utils";
 import { Star } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const SearchReasult = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchParams] = useSearchParams();
   const { lang } = useParams();
+  const { t } = useTranslation();
   qs.parse(searchParams.toString());
   const itemsCountOnPage = 8;
   const from = (currentPage - 1) * itemsCountOnPage;
@@ -33,6 +35,10 @@ const SearchReasult = () => {
     to: to,
     where: where,
   };
+  const navigateLink =
+    where === "movies"
+      ? `/${lang}/${APP_PATHS.MOVIES}/`
+      : `/${lang}/${APP_PATHS.ACTORS}/`;
 
   const { data, isPending } = useGetAdvancedSearchInfo(payload);
 
@@ -42,8 +48,6 @@ const SearchReasult = () => {
   for (let i = 0; i < 15; i++) {
     pagination.push(i + 1);
   }
-
-  console.log(data);
 
   return (
     <div className="mb-8 mt-8 flex flex-col space-y-10">
@@ -56,7 +60,7 @@ const SearchReasult = () => {
               key={d.id}
               className="shadow-sx max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800"
             >
-              <Link to={`${APP_PATHS.MOVIES}/${d.id}`}>
+              <Link to={`${navigateLink}${d.id}`}>
                 <img
                   className="mx-auto h-[300px] w-full rounded-t-lg"
                   src={import.meta.env.VITE_SUPABASE_STORAGE_URL + d.image}
@@ -64,7 +68,7 @@ const SearchReasult = () => {
                 />
               </Link>
               <div className="p-5">
-                <Link to="#">
+                <Link to={`${navigateLink}${d.id}`}>
                   <h5 className="text-md mb-2 font-semibold tracking-tight text-gray-900 hover:underline dark:text-white">
                     {lang == "ka"
                       ? shortenText(d.name_ka, 30)
@@ -96,6 +100,7 @@ const SearchReasult = () => {
                       searchParams.set("p", newPage.toString());
                     }
                   }}
+                  title={t("layout.prev")}
                   className="cursor-pointer"
                 />
               </PaginationItem>
@@ -124,6 +129,7 @@ const SearchReasult = () => {
                     }
                   }}
                   className="cursor-pointer"
+                  title={t("layout.next")}
                   aria-disabled="true"
                 />
               </PaginationItem>

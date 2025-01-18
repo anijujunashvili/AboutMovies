@@ -6,6 +6,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Regular";
+  src:
+    local("bpg_nino_mtavruli_normal"),
+    url("./assets/fonts/bpg_nino_mtavruli_normal.ttf") format("TrueType");
+}
+
 .en {
   font-family: "Sarala", serif;
 }

@@ -16,7 +16,7 @@ const ActorMovies = () => {
     <>
       <div className="flex flex-col">
         <div>
-          <h3 className="text-secondary border-primary mt-2 border-l-4 pl-3 text-3xl font-bold">
+          <h3 className="text-secondary font-primaryRegular border-primary mt-2 border-l-4 pl-3 pt-1 text-3xl font-bold">
             {t("actor.movies")}
           </h3>
         </div>

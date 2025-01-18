@@ -21,7 +21,7 @@ const BornToday = () => {
     <div className="mb-14 mt-10 flex">
       <div className="mx-auto w-full flex-col space-y-4 px-4 lg:w-5/6">
         <div>
-          <h3 className="text-secondary border-primary mb-6 border-l-4 pl-2 text-3xl font-bold">
+          <h3 className="text-secondary font-primaryRegular border-primary mb-6 border-l-4 pl-3 pt-1 text-3xl font-bold">
             {t("layout.actors")}
           </h3>
         </div>
@@ -55,9 +55,6 @@ const BornToday = () => {
                   <div className="flex flex-col items-center justify-center">
                     <div className="text-md font-bold dark:text-white">
                       {lang === "ka" ? act.name_ka : act.name_en}
-                    </div>
-                    <div className="text-primary-foreground dark:text-muted-foreground">
-                      54
                     </div>
                   </div>
                 </CarouselItem>

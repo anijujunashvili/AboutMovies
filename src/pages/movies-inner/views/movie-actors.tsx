@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ActorsPropsType } from "@/types/actors";
 import {
   HoverCard,
@@ -7,30 +7,26 @@ import {
 } from "@/components/ui/hover-card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { CalendarDays } from "lucide-react";
-import { Link } from "react-router-dom";
 import { APP_PATHS } from "@/routes/enum";
 
 const MovieActors: React.FC<ActorsPropsType> = ({ actors }) => {
+  const navigate = useNavigate();
   const { lang } = useParams();
+  const handleNavigate = (id: number) => {
+    const path = `/${lang}/${APP_PATHS.ACTORS}/${id}`;
+    navigate(path);
+  };
   return (
     <>
       {actors?.map((a, i) => {
         return (
           <div key={i} className="flex gap-2">
-            {/* <Link to="/" key={a.id}>
-            
-              <span className="text-secondary hover:underline">
-                {lang === "ka" ? a?.actors?.name_ka : a?.actors?.name_en}
-              </span>
-            </Link> */}
             <HoverCard>
-              <HoverCardTrigger>
-                <Link
-                  to={"/" + lang + "/" + APP_PATHS.ACTORS + "/" + a?.actors?.id}
-                  className="dark:text-secondary font-bold hover:underline"
-                >
-                  {lang === "ka" ? a?.actors?.name_ka : a?.actors?.name_en}
-                </Link>
+              <HoverCardTrigger
+                className="dark:text-secondary font-bold hover:underline"
+                onClick={() => handleNavigate(Number(a?.actors?.id))}
+              >
+                {lang === "ka" ? a?.actors?.name_ka : a?.actors?.name_en}
               </HoverCardTrigger>
               <HoverCardContent className="w-80">
                 <div className="flex justify-start space-x-4">

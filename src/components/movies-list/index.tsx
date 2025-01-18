@@ -73,7 +73,7 @@ const MoviesList = ({ headline }: { headline: string }) => {
   return (
     <div className="mb-14 mt-6 flex lg:mt-10">
       <div className="mx-auto w-full flex-col space-y-10 px-4 lg:w-5/6">
-        <h3 className="text-secondary border-primary border-l-4 pl-3 text-3xl font-bold">
+        <h3 className="text-secondary font-primaryRegular border-primary border-l-4 pl-3 pt-1 text-3xl font-bold">
           {headline}
         </h3>
         <Carousel
