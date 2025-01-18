@@ -23,7 +23,7 @@ const SearchReasult = () => {
   const { lang } = useParams();
   const { t } = useTranslation();
   qs.parse(searchParams.toString());
-  const itemsCountOnPage = 8;
+  const itemsCountOnPage = 3;
   const from = (currentPage - 1) * itemsCountOnPage;
   const to = currentPage * itemsCountOnPage - 1;
   const search = searchParams.get("search") ? searchParams.get("search") : "";
@@ -80,7 +80,7 @@ const SearchReasult = () => {
                 {where === "movies" && (
                   <div className="flex flex-row gap-1">
                     <Star size={20} className="text-primary" fill="#ffc300" />
-                    <span>8.2</span>
+                    <span className="dark:text-secondary">8.2</span>
                   </div>
                 )}
               </div>
@@ -96,7 +96,7 @@ const SearchReasult = () => {
       )}
       {pagination && !isPending && maxCount > 0 && (
         <div className="flex py-10">
-          <Pagination>
+          <Pagination className="dark:text-secondary">
             <PaginationContent>
               <PaginationItem>
                 <PaginationPrevious

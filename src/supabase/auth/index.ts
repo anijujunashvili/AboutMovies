@@ -1,13 +1,26 @@
 import { supabase } from "..";
 
-export const register = ({
+export const register = async ({
   email,
   password,
 }: {
   email: string;
   password: string;
 }) => {
-  return supabase.auth.signUp({ email, password });
+  return await supabase.auth
+    .signUp({
+      email,
+      password,
+    })
+    .then((res) => {
+      const user_id = res.data.user?.id;
+      const email = res.data.user?.email;
+      if (user_id && email) {
+        return supabase
+          .from("profiles")
+          .insert({ user_id: user_id, email: email });
+      }
+    });
 };
 
 export const login = ({
