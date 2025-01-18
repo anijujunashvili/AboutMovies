@@ -19,15 +19,15 @@ const ActorInfo = () => {
             </div>
           </div>
         </div>
-        <div className="my-4 flex flex-row gap-6">
-          <div className="flex w-1/3">
+        <div className="my-4 flex flex-col gap-6 md:flex-row">
+          <div className="flex md:w-1/3">
             <img
               src={import.meta.env.VITE_SUPABASE_STORAGE_URL + info?.image}
               className="rounded-sm"
             />
           </div>
 
-          <div className="flex w-2/3 cursor-pointer flex-col">
+          <div className="flex cursor-pointer flex-col md:w-2/3">
             <div className="flex flex-row gap-2 border-b py-4 dark:border-gray-700">
               <div className="dark:text-secondary">{t("actor.born")}</div>
               <div className="dark:text-secondary font-bold">

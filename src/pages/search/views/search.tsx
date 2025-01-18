@@ -57,7 +57,7 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="hidden md:col-span-3 md:block">
+    <div className="md:col-span-3">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="search-container flex flex-row rounded-sm">
           <Controller
@@ -68,13 +68,13 @@ const SearchBar = () => {
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="celebs">
-                    <div className="flex flex-row gap-4">
+                    <div className="flex flex-row items-center gap-4">
                       <Users className="w-4" />
                       <span>{t("movies.celebs")}</span>
                     </div>
                   </SelectItem>
                   <SelectItem value="movies">
-                    <div className="flex flex-row gap-4">
+                    <div className="flex flex-row items-center gap-4">
                       <Tv className="w-4" />
                       <span>{t("movies.movies")}</span>
                     </div>

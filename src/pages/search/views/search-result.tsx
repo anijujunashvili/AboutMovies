@@ -42,20 +42,22 @@ const SearchReasult = () => {
 
   const { data, isPending } = useGetAdvancedSearchInfo(payload);
 
-  const maxPage = data ? data[0]?.count / itemsCountOnPage : 1;
+  const maxCount = data ? data[0]?.count : 0;
+  const maxPage = Math.ceil(maxCount / itemsCountOnPage);
+
   const pagination = [];
 
-  for (let i = 0; i < 15; i++) {
+  for (let i = 0; i < maxPage; i++) {
     pagination.push(i + 1);
   }
 
   return (
     <div className="mb-8 mt-8 flex flex-col space-y-10">
-      <div className="grid h-auto grid-cols-3 gap-8">
-        {isPending ? (
-          <SearchLoader />
-        ) : (
-          data?.map((d) => (
+      {isPending ? (
+        <SearchLoader />
+      ) : (
+        <div className="grid h-auto grid-cols-2 gap-8 lg:grid-cols-3">
+          {data?.map((d) => (
             <div
               key={d.id}
               className="shadow-sx max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800"
@@ -83,11 +85,16 @@ const SearchReasult = () => {
                 )}
               </div>
             </div>
-          ))
-        )}
-      </div>
+          ))}
+        </div>
+      )}
 
-      {pagination && !isPending && (
+      {maxCount == null && (
+        <div className="dark:text-secondary text-center text-gray-800">
+          {t("layout.not_found")}
+        </div>
+      )}
+      {pagination && !isPending && maxCount > 0 && (
         <div className="flex py-10">
           <Pagination>
             <PaginationContent>

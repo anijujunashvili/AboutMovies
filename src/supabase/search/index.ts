@@ -7,14 +7,14 @@ import { moviesWithPagType } from "@/types/movies";
 
 export const getSearchInfo = async (key: string, lang: string) => {
   try {
-    if (key.length < 2) return;
+    //if (key.length < 2) return;
     const searchColumn = lang === "ka" ? "name_ka" : "name_en";
 
     const result = await supabase
       .from("movies")
       .select("*")
-      .ilike(searchColumn, `%${key}%`);
-    //.ilike(searchColumn, `%${key ?? ""}%`);
+      .ilike(searchColumn, `%${key ?? ""}%`)
+      .limit(6);
 
     return result.data as movieType[];
   } catch (error) {
@@ -33,11 +33,11 @@ export const getAdvancedSearchInfo = async (payload: advancedSearch) => {
       .ilike(searchColumn, `%${payload.search}%`)
       .range(payload.from, payload.to);
 
-    //     const last = result.data
-    //       ? searchWithPag(result.data, result.count)
-    //       : result.data;
-    // console.log(result.data);
-    return result.data as moviesWithPagType[] | MapedActorType[];
+    const newArray = result.data?.map((res) => {
+      return { ...res, count: result.count };
+    });
+
+    return newArray as moviesWithPagType[] | MapedActorType[];
   } catch (error) {
     console.log("Error during get movies list", error);
   }

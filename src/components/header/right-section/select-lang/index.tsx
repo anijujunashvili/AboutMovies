@@ -9,6 +9,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { ChevronDown } from "lucide-react";
+import { useEffect } from "react";
 
 const SelectLang = () => {
   const path = useLocation();
@@ -18,13 +19,13 @@ const SelectLang = () => {
   const changeLang = (lng: string) => {
     i18n.changeLanguage(lng);
     const newPath = path.pathname.replace(`/${lang}/`, `/${lng}/`);
-    navigate(newPath);
+    navigate(newPath + path.search);
   };
 
-  // useEffect(() => {
-  //   //changeLang(String(lang)); es davakomentare searchis redirectis gamo
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [lang]);
+  useEffect(() => {
+    changeLang(String(lang));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lang]);
 
   const { t } = useTranslation();
 

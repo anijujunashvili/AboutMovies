@@ -37,7 +37,7 @@ const MovieInfo = () => {
               <div className="dark:text-secondary text-left text-sm text-gray-700 md:text-right">
                 {t("movies.user_rating")}
               </div>
-              <div className="dark:text-secondary flex flex-row gap-2 text-gray-700">
+              <div className="dark:text-secondary flex flex-row gap-2 text-gray-700 md:justify-end">
                 <Star size={20} className="text-primary" fill="#ffc300" />
                 <span>{rating.toFixed(1)} / 10</span>
               </div>
@@ -47,7 +47,7 @@ const MovieInfo = () => {
               <div className="dark:text-secondary text-left text-sm text-gray-700 md:text-right">
                 {t("movies.your_rating")}
               </div>
-              <div className="text-md dark:text-secondary flex flex-row gap-2 text-gray-700">
+              <div className="text-md dark:text-secondary flex flex-row gap-2 text-gray-700 md:justify-end">
                 <Star
                   size={20}
                   className="text-secondary dark:fill-secondary cursor-pointer"
@@ -58,11 +58,12 @@ const MovieInfo = () => {
             </div>
           </div>
         </div>
+
         <div className="my-4 flex flex-col gap-6 md:flex-row">
           <div className="flex md:w-1/3">
             <img
               src={import.meta.env.VITE_SUPABASE_STORAGE_URL + info?.image}
-              className="h-[200px] rounded-sm md:h-full"
+              className="rounded-sm"
             />
           </div>
 

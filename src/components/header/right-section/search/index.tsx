@@ -21,6 +21,7 @@ const customStyles = {
     width: "50%",
     minHeight: "400px",
     marginRight: "-50%",
+    backfround: "red",
     transform: "translate(-50%, -50%)",
   },
 };
@@ -65,6 +66,7 @@ const SearchComp = () => {
           onRequestClose={closeModal}
           style={customStyles}
           contentLabel="Search"
+          portalClassName="bg-primary"
         >
           <X onClick={closeModal} className="absolute right-4 cursor-pointer" />
           <div className="flex flex-col justify-between">

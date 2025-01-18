@@ -24,12 +24,12 @@ const NewsForInnerPages = ({
           {news?.map((n) => (
             <div
               key={n.id}
-              className="flex h-[100px] cursor-pointer flex-row gap-2 rounded-md shadow-md"
+              className="flex h-[80px] cursor-pointer flex-row gap-2 rounded-md shadow-md"
             >
               <div className="w-1/3">
                 <img
                   src={import.meta.env.VITE_SUPABASE_STORAGE_URL + n.image}
-                  className="h-full max-h-[100px] w-full rounded-l-md"
+                  className="h-full max-h-[80px] w-full rounded-l-md"
                 />
               </div>
               <div className="flex w-2/3 flex-col">

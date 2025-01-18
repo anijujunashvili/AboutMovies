@@ -23,7 +23,7 @@ const MobileMenu = () => {
       </Link>
       {SHEET_SIDES.map((side) => (
         <Sheet key={side}>
-          <SheetTrigger asChild className="text-white">
+          <SheetTrigger asChild className="dark:text-white">
             <Menu />
           </SheetTrigger>
           <SheetContent side={side} className="dark:text-white">
@@ -31,7 +31,7 @@ const MobileMenu = () => {
             <SheetDescription></SheetDescription>
             <div>
               <ul className="text-md dark:text-secondary mt-4 flex flex-col justify-start space-y-4 font-normal md:mt-0 dark:border-gray-700">
-                <li className="hover:text-primary border-b border-gray-700 py-4">
+                <li className="hover:text-primary border-b border-gray-300 py-4 dark:border-gray-700">
                   <Link
                     to="/home"
                     className="hover:underline"
@@ -40,17 +40,17 @@ const MobileMenu = () => {
                     {t("layout.home")}
                   </Link>
                 </li>
-                <li className="hover:text-primary border-b border-gray-700 py-4">
+                <li className="hover:text-primary border-b border-gray-300 py-4 dark:border-gray-700">
                   <Link to="about" className="hover:underline">
                     {t("layout.about")}
                   </Link>
                 </li>
-                <li className="hover:text-primary border-b border-gray-700 py-4">
+                <li className="hover:text-primary border-b border-gray-300 py-4 dark:border-gray-700">
                   <Link to="movies" className="hover:underline">
                     {t("layout.movies")}
                   </Link>
                 </li>
-                <li className="hover:text-primary border-b border-gray-700 py-4">
+                <li className="hover:text-primary border-b border-gray-300 py-4 dark:border-gray-700">
                   <Link to="about" className="hover:underline">
                     {t("layout.jobs")}
                   </Link>

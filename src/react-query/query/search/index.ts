@@ -7,7 +7,7 @@ export const useGetSearchedInfo = (key: string, lang: string) => {
   const { data: searchInfo } = useQuery({
     queryKey: [QUERY_KEYS.SEARCH, key],
     queryFn: () => getSearchInfo(key, lang),
-    enabled: key?.length > 1,
+    //enabled: key?.length > 1,
   });
   return searchInfo;
 };
