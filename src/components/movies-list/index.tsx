@@ -22,13 +22,14 @@ import { APP_PATHS } from "@/routes/enum";
 import { shortenText } from "@/utils";
 import { Button } from "../ui/button";
 import { useAtom } from "jotai";
-import { meAtom } from "@/store/auth";
+import { meAtom, userAtom } from "@/store/auth";
 import { useRateMovie } from "@/react-query/mutation/movies";
 import SuccessMsg from "@/components/success-message";
 import { lastRatedType } from "@/types/movies";
 
 const MoviesList = ({ headline }: { headline: string }) => {
   const [me] = useAtom(meAtom);
+  const [user] = useAtom(userAtom);
   const [star, setStar] = useState(0);
   const [lastRated, setLastRated] = useState<lastRatedType>({
     rated: false,
@@ -56,11 +57,6 @@ const MoviesList = ({ headline }: { headline: string }) => {
       }
     }
   };
-  if (typeof me?.id !== "undefined") {
-    console.log(me?.id);
-  } else {
-    console.log(2);
-  }
 
   return (
     <div className="mb-14 mt-6 flex lg:mt-10">
@@ -79,12 +75,12 @@ const MoviesList = ({ headline }: { headline: string }) => {
             {Movies?.map((movie) => (
               <CarouselItem
                 key={movie.id}
-                className="shadow-sx basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5"
+                className="shadow-sx basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5"
               >
                 <div className="max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800">
                   <Link to={`/${lang}/${APP_PATHS.MOVIES}/${movie.id}`}>
                     <img
-                      className="mx-auto h-[350px] w-full rounded-t-lg md:h-[300px]"
+                      className="mx-auto w-full rounded-t-lg"
                       src={
                         import.meta.env.VITE_SUPABASE_STORAGE_URL + movie.image
                       }
@@ -103,7 +99,7 @@ const MoviesList = ({ headline }: { headline: string }) => {
                           {(movie?.rating_sum / movie?.rating_count).toFixed(1)}
                         </span>
                       </div>
-                      {typeof me?.id !== "undefined" && (
+                      {typeof user?.user.id !== "undefined" && (
                         <div className="">
                           {movie?.userRating > 0 ||
                           lastRated.id === movie.id ? (

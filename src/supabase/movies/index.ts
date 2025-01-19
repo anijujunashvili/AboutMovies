@@ -27,20 +27,12 @@ export const getMoviesHome = async (user_id?: string | undefined) => {
   try {
     const result = await supabase.from("movies").select("*");
 
-    // if (result.data && typeof user_id !== "undefined") {
-    //   console.log(1);
     const ratings = await supabase
       .from("user_ratings")
       .select("*")
       .eq("user_id", String(user_id));
-    // if (ratings.data) {
     const withRating = moviesWithUserRatings(result?.data, ratings.data);
     return withRating as MoviesWithRatingType[];
-    //   }
-    // } else {
-    //   console.log(2);
-    //   return result?.data as Tables<"movies">[];
-    // }
   } catch (error) {
     console.log("Error during get movies list", error);
   }

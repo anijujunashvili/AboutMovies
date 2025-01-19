@@ -52,7 +52,7 @@ const UserForm = () => {
   return (
     <>
       <div className="mb-10">
-        <div className="mx-auto flex w-4/5 flex-col py-10">
+        <div className="mx-auto flex flex-col p-4 py-10 lg:w-5/6">
           <h3 className="text-secondary border-primary border-l-4 pl-3 text-3xl font-bold">
             {t("profile.profile")}
             {isPending ? "loading..." : ""}

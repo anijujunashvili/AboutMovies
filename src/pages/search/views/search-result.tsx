@@ -64,9 +64,8 @@ const SearchReasult = () => {
             >
               <Link to={`${navigateLink}${d.id}`}>
                 <img
-                  className="mx-auto h-[300px] w-full rounded-t-lg"
+                  className="mx-auto w-full rounded-t-lg"
                   src={import.meta.env.VITE_SUPABASE_STORAGE_URL + d.image}
-                  alt=""
                 />
               </Link>
               <div className="p-5">
