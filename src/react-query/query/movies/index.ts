@@ -6,6 +6,7 @@ import {
   getUserRatedMovies,
   getMovieInfo,
   getSimilarMoviesList,
+  getMoviesHome,
 } from "@/supabase/movies";
 
 export const useGetMovies = () => {
@@ -14,6 +15,17 @@ export const useGetMovies = () => {
     queryFn: getMovies,
   });
 };
+
+// vtestav mtavarze marto
+
+export const useGetMoviesHome = (user_id: string | undefined) => {
+  return useQuery({
+    queryKey: [QUERY_KEYS.GET_MOVIES, user_id],
+    queryFn: () => getMoviesHome(user_id),
+  });
+};
+
+// vtestav mtavarze marto
 
 export const useGetMovieInfo = (m_id: number) => {
   return useQuery({

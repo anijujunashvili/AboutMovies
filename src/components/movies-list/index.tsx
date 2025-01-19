@@ -17,7 +17,7 @@ import { Link, useParams } from "react-router-dom";
 import { Star } from "lucide-react";
 import StarRatings from "react-star-ratings";
 import { useState } from "react";
-import { useGetMovies } from "@/react-query/query/movies";
+import { useGetMoviesHome } from "@/react-query/query/movies";
 import { APP_PATHS } from "@/routes/enum";
 import { shortenText } from "@/utils";
 import { Button } from "../ui/button";
@@ -25,7 +25,6 @@ import { useAtom } from "jotai";
 import { meAtom } from "@/store/auth";
 import { useRateMovie } from "@/react-query/mutation/movies";
 import SuccessMsg from "@/components/success-message";
-import { useGetUserRatedMovies } from "@/react-query/query/movies";
 import { lastRatedType } from "@/types/movies";
 
 const MoviesList = ({ headline }: { headline: string }) => {
@@ -37,19 +36,7 @@ const MoviesList = ({ headline }: { headline: string }) => {
     value: 0,
   });
   const { lang } = useParams();
-  const { data: Movies, refetch: refetchMovies } = useGetMovies();
-  const { data: ratedMovies, refetch } = useGetUserRatedMovies(
-    me?.id as string,
-  );
-
-  const checkIfIsRated = (mId: number, getValue: boolean) => {
-    const result = ratedMovies?.find((item) => item.m_id === mId);
-    if (getValue) {
-      return result?.rating as number;
-    } else {
-      return result ? true : false;
-    }
-  };
+  const { data: Movies, refetch: refetchMovies } = useGetMoviesHome(me?.id);
 
   const { mutate: rateMovie } = useRateMovie();
   const handleRate = (mid: number, rcount: number, rsum: number) => {
@@ -64,7 +51,6 @@ const MoviesList = ({ headline }: { headline: string }) => {
       if (star > 0) {
         rateMovie(payload);
         setStar(0);
-        refetch();
         refetchMovies();
         setLastRated({ rated: true, id: mid, value: star });
       }
@@ -107,11 +93,12 @@ const MoviesList = ({ headline }: { headline: string }) => {
                           className="text-primary"
                           fill="#ffc300"
                         />
-                        <span className="dark:text-white">rame 8</span>
+                        <span className="dark:text-white">
+                          {(movie?.rating_sum / movie?.rating_count).toFixed(1)}
+                        </span>
                       </div>
                       <div className="">
-                        {checkIfIsRated(movie.id, false) ||
-                        lastRated.id === movie.id ? (
+                        {movie?.userRating > 0 || lastRated.id === movie.id ? (
                           <div className="flex flex-row gap-1">
                             <Star
                               size={20}
@@ -119,8 +106,8 @@ const MoviesList = ({ headline }: { headline: string }) => {
                               fill="#283b7b"
                             />
                             <span className="dark:text-white">
-                              {checkIfIsRated(movie.id, true)
-                                ? checkIfIsRated(movie.id, true)
+                              {movie?.userRating > 0
+                                ? movie?.userRating
                                 : lastRated.value}
                             </span>
                           </div>
@@ -132,7 +119,7 @@ const MoviesList = ({ headline }: { headline: string }) => {
                                 className="text-secondary cursor-pointer"
                               />
                             </DialogTrigger>
-                            <DialogContent className="justify-center text-center">
+                            <DialogContent className="justify-center text-center dark:border-gray-800">
                               {lastRated.rated && lastRated.id === movie.id ? (
                                 <SuccessMsg
                                   lgText="layout.rated"
@@ -144,7 +131,7 @@ const MoviesList = ({ headline }: { headline: string }) => {
                                 <>
                                   <DialogHeader>
                                     <DialogTitle className="text-center"></DialogTitle>
-                                    <DialogDescription className="text-center text-2xl font-bold text-black">
+                                    <DialogDescription className="dark:text-secondary text-center text-2xl font-bold text-black">
                                       {lang == "ka"
                                         ? movie.name_ka
                                         : movie.name_en}
@@ -166,7 +153,7 @@ const MoviesList = ({ headline }: { headline: string }) => {
                                   </div>
                                   <div className="my-4 flex justify-center">
                                     <Button
-                                      className="bg-primary w-1/2 rounded-full"
+                                      className="bg-primary w-1/2 rounded-full dark:text-white"
                                       onClick={() =>
                                         handleRate(
                                           movie.id,

@@ -23,7 +23,7 @@ const SearchReasult = () => {
   const { lang } = useParams();
   const { t } = useTranslation();
   qs.parse(searchParams.toString());
-  const itemsCountOnPage = 3;
+  const itemsCountOnPage = 9;
   const from = (currentPage - 1) * itemsCountOnPage;
   const to = currentPage * itemsCountOnPage - 1;
   const search = searchParams.get("search") ? searchParams.get("search") : "";

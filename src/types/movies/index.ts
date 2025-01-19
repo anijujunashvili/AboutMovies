@@ -71,3 +71,21 @@ export type similarMoviesType = {
   g_id: number;
   movies: Movies;
 };
+
+export type MoviesWithRatingType = {
+  awards: number;
+  created_at: string;
+  description_en: string;
+  description_ka: string;
+  id: number;
+  image: string;
+  name_en: string;
+  name_ka: string;
+  nomination: number;
+  oscars: number;
+  rating_count: number;
+  rating_sum: number;
+  release_date: string;
+  trailer: string;
+  userRating: number;
+};
