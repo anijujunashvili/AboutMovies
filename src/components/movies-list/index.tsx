@@ -56,6 +56,12 @@ const MoviesList = ({ headline }: { headline: string }) => {
       }
     }
   };
+  if (typeof me?.id !== "undefined") {
+    console.log(me?.id);
+  } else {
+    console.log(2);
+  }
+
   return (
     <div className="mb-14 mt-6 flex lg:mt-10">
       <div className="mx-auto w-full flex-col space-y-10 px-4 lg:w-5/6">
@@ -97,80 +103,84 @@ const MoviesList = ({ headline }: { headline: string }) => {
                           {(movie?.rating_sum / movie?.rating_count).toFixed(1)}
                         </span>
                       </div>
-                      <div className="">
-                        {movie?.userRating > 0 || lastRated.id === movie.id ? (
-                          <div className="flex flex-row gap-1">
-                            <Star
-                              size={20}
-                              className="text-secondary fill-secondary cursor-pointer"
-                              fill="#283b7b"
-                            />
-                            <span className="dark:text-white">
-                              {movie?.userRating > 0
-                                ? movie?.userRating
-                                : lastRated.value}
-                            </span>
-                          </div>
-                        ) : (
-                          <Dialog>
-                            <DialogTrigger>
+                      {typeof me?.id !== "undefined" && (
+                        <div className="">
+                          {movie?.userRating > 0 ||
+                          lastRated.id === movie.id ? (
+                            <div className="flex flex-row gap-1">
                               <Star
                                 size={20}
-                                className="text-secondary cursor-pointer"
+                                className="text-secondary fill-secondary cursor-pointer"
+                                fill="#283b7b"
                               />
-                            </DialogTrigger>
-                            <DialogContent className="justify-center text-center dark:border-gray-800">
-                              {lastRated.rated && lastRated.id === movie.id ? (
-                                <SuccessMsg
-                                  lgText="layout.rated"
-                                  smText=""
-                                  btnName=""
-                                  type="rate"
+                              <span className="dark:text-white">
+                                {movie?.userRating > 0
+                                  ? movie?.userRating
+                                  : lastRated.value}
+                              </span>
+                            </div>
+                          ) : (
+                            <Dialog>
+                              <DialogTrigger>
+                                <Star
+                                  size={20}
+                                  className="text-secondary cursor-pointer"
                                 />
-                              ) : (
-                                <>
-                                  <DialogHeader>
-                                    <DialogTitle className="text-center"></DialogTitle>
-                                    <DialogDescription className="dark:text-secondary text-center text-2xl font-bold text-black">
-                                      {lang == "ka"
-                                        ? movie.name_ka
-                                        : movie.name_en}
-                                    </DialogDescription>
-                                  </DialogHeader>
-                                  <div>
-                                    <StarRatings
-                                      numberOfStars={10}
-                                      changeRating={(rating) => {
-                                        setStar(rating);
-                                      }}
-                                      rating={star}
-                                      name="rating"
-                                      starDimension="20px"
-                                      starSpacing="4px"
-                                      starHoverColor="#283b7b"
-                                      starRatedColor="#283b7b"
-                                    />
-                                  </div>
-                                  <div className="my-4 flex justify-center">
-                                    <Button
-                                      className="bg-primary w-1/2 rounded-full dark:text-white"
-                                      onClick={() =>
-                                        handleRate(
-                                          movie.id,
-                                          Number(movie?.rating_count),
-                                          Number(movie.rating_sum),
-                                        )
-                                      }
-                                    >
-                                      Rate
-                                    </Button>
-                                  </div>
-                                </>
-                              )}
-                            </DialogContent>
-                          </Dialog>
-                        )}
-                      </div>
+                              </DialogTrigger>
+                              <DialogContent className="justify-center text-center dark:border-gray-800">
+                                {lastRated.rated &&
+                                lastRated.id === movie.id ? (
+                                  <SuccessMsg
+                                    lgText="layout.rated"
+                                    smText=""
+                                    btnName=""
+                                    type="rate"
+                                  />
+                                ) : (
+                                  <>
+                                    <DialogHeader>
+                                      <DialogTitle className="text-center"></DialogTitle>
+                                      <DialogDescription className="dark:text-secondary text-center text-2xl font-bold text-black">
+                                        {lang == "ka"
+                                          ? movie.name_ka
+                                          : movie.name_en}
+                                      </DialogDescription>
+                                    </DialogHeader>
+                                    <div>
+                                      <StarRatings
+                                        numberOfStars={10}
+                                        changeRating={(rating) => {
+                                          setStar(rating);
+                                        }}
+                                        rating={star}
+                                        name="rating"
+                                        starDimension="20px"
+                                        starSpacing="4px"
+                                        starHoverColor="#283b7b"
+                                        starRatedColor="#283b7b"
+                                      />
+                                    </div>
+                                    <div className="my-4 flex justify-center">
+                                      <Button
+                                        className="bg-primary w-1/2 rounded-full dark:text-white"
+                                        onClick={() =>
+                                          handleRate(
+                                            movie.id,
+                                            Number(movie?.rating_count),
+                                            Number(movie.rating_sum),
+                                          )
+                                        }
+                                      >
+                                        Rate
+                                      </Button>
+                                    </div>
+                                  </>
+                                )}
+                              </DialogContent>
+                            </Dialog>
+                          )}
+                        </div>
+                      )}
                     </div>
                     <Link to={`/${lang}/${APP_PATHS.MOVIES}/${movie.id}`}>
                       <h5 className="text-md mb-2 font-semibold tracking-tight text-gray-900 hover:underline dark:text-white">
