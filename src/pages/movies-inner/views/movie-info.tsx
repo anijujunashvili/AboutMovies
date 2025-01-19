@@ -120,7 +120,12 @@ const MovieInfo = () => {
           {lang === "ka" ? info?.description_ka : info?.description_en}
         </div>
         <div>
-          <iframe className="aspect-video w-full" src={info?.trailer}></iframe>
+          {info?.trailer != null && (
+            <iframe
+              className="aspect-video w-full"
+              src={info?.trailer}
+            ></iframe>
+          )}
         </div>
       </div>
     </>
