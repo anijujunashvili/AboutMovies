@@ -5,58 +5,20 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 import { Link, useParams } from "react-router-dom";
 import { Star } from "lucide-react";
-import StarRatings from "react-star-ratings";
-import { useState } from "react";
 import { useGetMoviesHome } from "@/react-query/query/movies";
 import { APP_PATHS } from "@/routes/enum";
 import { shortenText } from "@/utils";
-import { Button } from "../ui/button";
 import { useAtom } from "jotai";
-import { meAtom, userAtom } from "@/store/auth";
-import { useRateMovie } from "@/react-query/mutation/movies";
-import SuccessMsg from "@/components/success-message";
-import { lastRatedType } from "@/types/movies";
+import { meAtom } from "@/store/auth";
+import UserRating from "./user-rating";
 
 const MoviesList = ({ headline }: { headline: string }) => {
   const [me] = useAtom(meAtom);
-  const [user] = useAtom(userAtom);
-  const [star, setStar] = useState(0);
-  const [lastRated, setLastRated] = useState<lastRatedType>({
-    rated: false,
-    id: 0,
-    value: 0,
-  });
   const { lang } = useParams();
-  const { data: Movies, refetch: refetchMovies } = useGetMoviesHome(me?.id);
 
-  const { mutate: rateMovie } = useRateMovie();
-  const handleRate = (mid: number, rcount: number, rsum: number) => {
-    if (me?.id) {
-      const payload = {
-        m_id: mid,
-        rate: star,
-        user_id: me?.id,
-        rating_count: rcount,
-        rating_sum: rsum,
-      };
-      if (star > 0) {
-        rateMovie(payload);
-        setStar(0);
-        refetchMovies();
-        setLastRated({ rated: true, id: mid, value: star });
-      }
-    }
-  };
+  const { data: Movies } = useGetMoviesHome(me?.id);
 
   return (
     <div className="mb-14 mt-6 flex lg:mt-10">
@@ -79,13 +41,16 @@ const MoviesList = ({ headline }: { headline: string }) => {
               >
                 <div className="max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800">
                   <Link to={`/${lang}/${APP_PATHS.MOVIES}/${movie.id}`}>
-                    <img
-                      className="mx-auto w-full rounded-t-lg"
-                      src={
-                        import.meta.env.VITE_SUPABASE_STORAGE_URL + movie.image
-                      }
-                      alt=""
-                    />
+                    <div className="h-[350px]">
+                      <img
+                        className="mx-auto h-full w-full shrink-0 rounded-t-lg object-cover"
+                        src={
+                          import.meta.env.VITE_SUPABASE_STORAGE_URL +
+                          movie.image
+                        }
+                        alt=""
+                      />
+                    </div>
                   </Link>
                   <div className="p-5">
                     <div className="mb-4 flex flex-row items-center space-x-4">
@@ -96,87 +61,21 @@ const MoviesList = ({ headline }: { headline: string }) => {
                           fill="#ffc300"
                         />
                         <span className="dark:text-white">
-                          {(movie?.rating_sum / movie?.rating_count).toFixed(1)}
+                          {movie?.rating_count > 0
+                            ? (movie?.rating_sum / movie?.rating_count).toFixed(
+                                1,
+                              )
+                            : 0}
                         </span>
                       </div>
-                      {typeof user?.user.id !== "undefined" && (
-                        <div className="">
-                          {movie?.userRating > 0 ||
-                          lastRated.id === movie.id ? (
-                            <div className="flex flex-row gap-1">
-                              <Star
-                                size={20}
-                                className="text-secondary fill-secondary cursor-pointer"
-                                fill="#283b7b"
-                              />
-                              <span className="dark:text-white">
-                                {movie?.userRating > 0
-                                  ? movie?.userRating
-                                  : lastRated.value}
-                              </span>
-                            </div>
-                          ) : (
-                            <Dialog>
-                              <DialogTrigger>
-                                <Star
-                                  size={20}
-                                  className="text-secondary cursor-pointer"
-                                />
-                              </DialogTrigger>
-                              <DialogContent className="justify-center text-center dark:border-gray-800">
-                                {lastRated.rated &&
-                                lastRated.id === movie.id ? (
-                                  <SuccessMsg
-                                    lgText="layout.rated"
-                                    smText=""
-                                    btnName=""
-                                    type="rate"
-                                  />
-                                ) : (
-                                  <>
-                                    <DialogHeader>
-                                      <DialogTitle className="text-center"></DialogTitle>
-                                      <DialogDescription className="dark:text-secondary text-center text-2xl font-bold text-black">
-                                        {lang == "ka"
-                                          ? movie.name_ka
-                                          : movie.name_en}
-                                      </DialogDescription>
-                                    </DialogHeader>
-                                    <div>
-                                      <StarRatings
-                                        numberOfStars={10}
-                                        changeRating={(rating) => {
-                                          setStar(rating);
-                                        }}
-                                        rating={star}
-                                        name="rating"
-                                        starDimension="20px"
-                                        starSpacing="4px"
-                                        starHoverColor="#283b7b"
-                                        starRatedColor="#283b7b"
-                                      />
-                                    </div>
-                                    <div className="my-4 flex justify-center">
-                                      <Button
-                                        className="bg-primary w-1/2 rounded-full dark:text-white"
-                                        onClick={() =>
-                                          handleRate(
-                                            movie.id,
-                                            Number(movie?.rating_count),
-                                            Number(movie.rating_sum),
-                                          )
-                                        }
-                                      >
-                                        Rate
-                                      </Button>
-                                    </div>
-                                  </>
-                                )}
-                              </DialogContent>
-                            </Dialog>
-                          )}
-                        </div>
-                      )}
+                      <UserRating
+                        rating={movie?.userRating}
+                        mid={movie?.id}
+                        nameKa={movie?.name_ka}
+                        nameEn={movie?.name_en}
+                        rSum={movie?.rating_sum}
+                        rCount={movie?.rating_count}
+                      />
                     </div>
                     <Link to={`/${lang}/${APP_PATHS.MOVIES}/${movie.id}`}>
                       <h5 className="text-md mb-2 font-semibold tracking-tight text-gray-900 hover:underline dark:text-white">

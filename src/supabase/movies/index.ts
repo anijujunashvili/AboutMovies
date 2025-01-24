@@ -6,16 +6,31 @@ import {
   Movies,
   MoviesWithRatingType,
 } from "@/types/movies";
-import { Tables } from "../supabase.types";
+
+import { Database, Tables } from "../supabase.types";
 
 export const getMovies = async () => {
   try {
     const result = await supabase.from("movies").select("*");
-    // const orderedData = result?.data
-    //   ? orderMovieList(result?.data)
-    //   : result?.data;
 
     return result?.data as Tables<"movies">[];
+  } catch (error) {
+    console.log("Error during get movies list", error);
+  }
+};
+
+export const getIfMovieIsRatedByUser = async (
+  user_id: string,
+  m_id: number,
+) => {
+  try {
+    const result = await supabase
+      .from("user_ratings")
+      .select("*")
+      .eq("user_id", user_id)
+      .eq("m_id", m_id);
+
+    return result?.data as Database["public"]["Tables"]["user_ratings"]["Row"][];
   } catch (error) {
     console.log("Error during get movies list", error);
   }
@@ -51,15 +66,18 @@ export const getMovieInfo = async (m_id: number) => {
     console.log("Error during get movies list", error);
   }
 };
-
+type userRType = {
+  m_id: number;
+  rating: number;
+};
 export const getUserRatedMovies = async (user_id: string) => {
   try {
     const result = await supabase
       .from("user_ratings")
-      .select("*")
+      .select("m_id,rating")
       .eq("user_id", user_id);
 
-    return result.data as Tables<"user_ratings">[];
+    return result.data as userRType[];
   } catch (error) {
     console.log("Error during get movies list", error);
   }
@@ -88,8 +106,8 @@ export const rateMovie = async (payload: moviesRateType) => {
     return await supabase
       .from("movies")
       .update({
-        rating_sum: newCount,
-        rating_count: newSum,
+        rating_sum: newSum,
+        rating_count: newCount,
       })
       .match({ id: payload.m_id })
       .then(() => {
@@ -120,7 +138,7 @@ export const getSimilarMoviesList = async (m_id: number) => {
       .select(
         "g_id,movies(id,name_ka,name_en,description_ka,description_en,image,release_date)",
       )
-      .filter("id", "in", `(${genresArray})`);
+      .or(`g_id.in.(${genresArray})`);
 
     const moviesArray = movies.data?.map((genre) => genre.movies);
 

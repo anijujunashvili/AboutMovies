@@ -12,4 +12,6 @@ export enum QUERY_KEYS {
   GET_ACTOR_INFO = "get-actor-info",
   GET_ACTOR_MOVIES = "get-actor-movies",
   GET_NEWS = "get-news",
+  GET_NEWS_INFO = "get-news-info",
+  GET_RATING = "get-rating",
 }

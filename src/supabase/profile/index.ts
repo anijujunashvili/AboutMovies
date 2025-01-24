@@ -60,7 +60,7 @@ type deletePhoto = {
 export const deleteUserPhoto = async (payload: deletePhoto) => {
   // const imagedel = import.meta.env.VITE_SUPABASE_STORAGE_URL + payload.image;
   const test = "462342740_18444065272071290_6673994856655417582_n.jpg";
-
+  console.log(payload.image);
   supabase.storage
     .from("movies")
     .remove([test])

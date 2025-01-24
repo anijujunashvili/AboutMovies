@@ -1,6 +1,6 @@
 import { supabase } from "..";
 import { movieType } from "@/types/search";
-import { MapedActorType } from "@/types/actors";
+import { ActorTypeWithPag } from "@/types/actors";
 import { advancedSearch } from "@/types/search";
 import { moviesWithPagType } from "@/types/movies";
 // import { searchWithPag } from "../utils";
@@ -37,8 +37,8 @@ export const getAdvancedSearchInfo = async (payload: advancedSearch) => {
       return { ...res, count: result.count };
     });
 
-    return newArray as moviesWithPagType[] | MapedActorType[];
+    return newArray as moviesWithPagType[] | ActorTypeWithPag[];
   } catch (error) {
-    console.log("Error during get movies list", error);
+    console.log("Error search", error);
   }
 };

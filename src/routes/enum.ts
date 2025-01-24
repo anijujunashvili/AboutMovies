@@ -8,4 +8,5 @@ export enum APP_PATHS {
   ACTORS = "actors",
   INDEX = "index",
   SEARCH = "search",
+  NEWS = "news",
 }

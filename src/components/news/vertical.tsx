@@ -3,6 +3,7 @@ import { Database } from "@/supabase/supabase.types";
 import dayjs from "dayjs";
 import "dayjs/locale/ka";
 import { shortenText } from "@/utils";
+import { APP_PATHS } from "@/routes/enum";
 
 const NewsForInnerPages = ({
   headline,
@@ -12,6 +13,7 @@ const NewsForInnerPages = ({
   news: Database["public"]["Tables"]["news"]["Row"][];
 }) => {
   const { lang } = useParams();
+
   return (
     <div className="mb-14 flex">
       <div className="mx-auto w-full flex-col space-y-8 px-4 md:w-5/6">
@@ -26,15 +28,15 @@ const NewsForInnerPages = ({
               key={n.id}
               className="flex h-[80px] cursor-pointer flex-row gap-2 rounded-md shadow-md"
             >
-              <div className="w-1/3">
+              <div className="h-[80px] w-1/3">
                 <img
                   src={import.meta.env.VITE_SUPABASE_STORAGE_URL + n.image}
-                  className="h-full max-h-[80px] w-full rounded-l-md"
+                  className="h-full max-h-[80px] w-full shrink-0 rounded-l-md object-cover"
                 />
               </div>
               <div className="flex w-2/3 flex-col">
                 <Link
-                  to="news/2"
+                  to={`/${lang}/${APP_PATHS.NEWS}/${n.id}`}
                   className="dark:text-secondary text-xs font-normal hover:underline"
                 >
                   {lang === "ka"

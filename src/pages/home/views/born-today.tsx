@@ -45,7 +45,7 @@ const BornToday = () => {
                         import.meta.env.VITE_SUPABASE_STORAGE_URL + act.image
                       }
                       alt=""
-                      className="w-full"
+                      className="w-full object-cover"
                     />
                     <AvatarFallback>
                       {lang === "ka" ? act.name_ka[0] : act.name_en[0]}

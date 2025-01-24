@@ -5,7 +5,7 @@ import { userInfoType } from "@/types/profile";
 
 export const useGetUserInfo = (userId: string) => {
   const { data: UserInfo } = useQuery({
-    queryKey: [QUERY_KEYS.GET_USER],
+    queryKey: [QUERY_KEYS.GET_USER, userId],
     queryFn: () => getUserInfo(userId),
   });
   return UserInfo as userInfoType;

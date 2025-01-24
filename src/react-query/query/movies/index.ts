@@ -7,12 +7,23 @@ import {
   getMovieInfo,
   getSimilarMoviesList,
   getMoviesHome,
+  getIfMovieIsRatedByUser,
 } from "@/supabase/movies";
 
 export const useGetMovies = () => {
   return useQuery({
     queryKey: [QUERY_KEYS.GET_MOVIES],
     queryFn: getMovies,
+  });
+};
+
+export const useGetIfMovieIsRatedByUser = (user_id: string, m_id: number) => {
+  return useQuery({
+    queryKey: [QUERY_KEYS.GET_RATING, user_id, m_id],
+    queryFn: () => getIfMovieIsRatedByUser(user_id, m_id),
+    select: (data) => {
+      if (data) return data[0];
+    },
   });
 };
 

@@ -7,7 +7,7 @@ const Profile = () => {
     <div className="flex flex-col">
       <UserCover />
       <UserForm />
-      <MoviesList headline="Favorite movies" />
+      <MoviesList headline="Rated Movies" />
     </div>
   );
 };

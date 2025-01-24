@@ -11,6 +11,7 @@ const SimilarMovies = () => {
   const { t } = useTranslation();
 
   const { data } = useGetSimilarMoviesList(Number(id));
+  const movieLink = `/${lang}/${APP_PATHS.MOVIES}/`;
 
   return (
     <>
@@ -50,7 +51,7 @@ const SimilarMovies = () => {
                               : shortenText(m.name_en, 50)}
                           </span>
                         </Link>
-                        <Link to={APP_PATHS.MOVIES + "/" + m.id}>
+                        <Link to={movieLink + m.id}>
                           <p className="pt-1 text-xs font-normal text-gray-600 hover:underline">
                             {lang === "ka"
                               ? shortenText(m.description_ka, 100)

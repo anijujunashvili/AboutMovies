@@ -1,4 +1,7 @@
-import { useGetMovieInfo } from "@/react-query/query/movies";
+import {
+  useGetMovieInfo,
+  useGetIfMovieIsRatedByUser,
+} from "@/react-query/query/movies";
 import { useParams } from "react-router-dom";
 import dayjs from "dayjs";
 import "dayjs/locale/ka";
@@ -8,10 +11,14 @@ import MovieActors from "./movie-actors";
 import { movieAct } from "@/types/actors";
 import MovieGenres from "./movies-genres";
 import { useTranslation } from "react-i18next";
+import UserRating from "@/components/movies-list/user-rating";
+import { useAtom } from "jotai";
+import { meAtom } from "@/store/auth";
 
 const MovieInfo = () => {
   const { lang, id } = useParams();
   const { t } = useTranslation();
+  const [me] = useAtom(meAtom);
 
   const { data: info } = useGetMovieInfo(Number(id));
   const rating =
@@ -19,6 +26,10 @@ const MovieInfo = () => {
       ? info?.rating_sum / info?.rating_count
       : 0;
   const { data: actors } = useGetMovieActors(Number(id));
+  const { data: userRating } = useGetIfMovieIsRatedByUser(
+    String(me?.id),
+    Number(id),
+  );
 
   return (
     <>
@@ -35,24 +46,23 @@ const MovieInfo = () => {
           <div className="flex flex-col justify-end space-y-4 md:flex-row md:space-x-4 md:space-y-0">
             <div className="flex flex-col">
               <div className="dark:text-secondary text-left text-sm text-gray-700 md:text-right">
+                {t("movies.your_rating")}
+              </div>
+              <UserRating
+                rating={Number(userRating?.rating)}
+                mid={Number(info?.id)}
+                rSum={Number(info?.rating_sum)}
+                rCount={Number(info?.rating_count)}
+                nameKa={String(info?.name_ka)}
+                nameEn={String(info?.name_en)}
+              />
+            </div>
+            <div className="flex flex-col">
+              <div className="dark:text-secondary text-left text-sm text-gray-700 md:text-right">
                 {t("movies.user_rating")}
               </div>
               <div className="dark:text-secondary flex flex-row gap-2 text-gray-700 md:justify-end">
                 <Star size={20} className="text-primary" fill="#ffc300" />
-                <span>{rating.toFixed(1)} / 10</span>
-              </div>
-            </div>
-
-            <div className="">
-              <div className="dark:text-secondary text-left text-sm text-gray-700 md:text-right">
-                {t("movies.your_rating")}
-              </div>
-              <div className="text-md dark:text-secondary flex flex-row gap-2 text-gray-700 md:justify-end">
-                <Star
-                  size={20}
-                  className="text-secondary dark:fill-secondary cursor-pointer"
-                  fill="#283b7b"
-                />
                 <span>{rating.toFixed(1)} / 10</span>
               </div>
             </div>

@@ -11,6 +11,7 @@ const ActorMovies = () => {
   const { t } = useTranslation();
 
   const { data } = useGetActorMoviesList(Number(id));
+  const moviesUrl = `/${lang}/${APP_PATHS.MOVIES}/`;
 
   return (
     <>
@@ -41,16 +42,14 @@ const ActorMovies = () => {
                     </div>
                     <div className="col-span-3 grid">
                       <div className="text-md cursor-pointer pt-1 font-semibold">
-                        <Link
-                          to={"/" + lang + "/" + APP_PATHS.MOVIES + "/" + m.id}
-                        >
+                        <Link to={moviesUrl + m.id}>
                           <span className="hover:underline">
                             {lang === "ka"
                               ? shortenText(m.name_ka, 50)
                               : shortenText(m.name_en, 50)}
                           </span>
                         </Link>
-                        <Link to={APP_PATHS.MOVIES + "/" + m.id}>
+                        <Link to={moviesUrl + m.id}>
                           <p className="pt-1 text-xs font-normal text-gray-600 hover:underline">
                             {lang === "ka"
                               ? shortenText(m.description_ka, 100)

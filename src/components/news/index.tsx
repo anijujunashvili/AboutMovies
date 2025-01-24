@@ -6,10 +6,11 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Database } from "@/supabase/supabase.types";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import dayjs from "dayjs";
 import { shortenText } from "@/utils";
 import "dayjs/locale/ka";
+import { APP_PATHS } from "@/routes/enum";
 
 const MovieNews = ({
   headline,
@@ -22,10 +23,15 @@ const MovieNews = ({
 }) => {
   const { lang } = useParams();
   const orient = !orientation ? "horizontal" : orientation;
+  const navigate = useNavigate();
   const contentStyle =
     orientation === "vertical"
       ? "basis-full w-full space-x-6 pl-0 "
       : "basis-full md:basis-1/2 lg:w-1/3 md:w-1/2 space-x-6 ";
+  const handleNavigate = (id: number) => {
+    const newsPath = `/${lang}/${APP_PATHS.NEWS}/${id}`;
+    navigate(newsPath);
+  };
   return (
     <div className="mb-14 mt-10 flex">
       <div className="mx-auto w-full space-y-6 px-4 lg:w-5/6">
@@ -47,12 +53,13 @@ const MovieNews = ({
               <CarouselItem
                 key={n.id}
                 className="relative h-full cursor-pointer space-y-3 pr-2"
+                onClick={() => handleNavigate(n.id)}
               >
                 <div className="grid grid-cols-3 space-x-3 border-r dark:border-gray-700">
-                  <div className="col-span-1 grid">
+                  <div className="col-span-1 grid h-[100px] overflow-hidden rounded-sm">
                     <img
                       src={import.meta.env.VITE_SUPABASE_STORAGE_URL + n.image}
-                      className="rounded-md dark:border dark:border-gray-700"
+                      className="h-full shrink-0 object-cover dark:border dark:border-gray-700"
                     />
                   </div>
                   <div className="col-span-2 grid">

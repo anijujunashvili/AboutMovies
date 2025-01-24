@@ -5,27 +5,29 @@ import { Button } from "@/components/ui/button";
 import { useDeleteUserPhoto } from "@/react-query/mutation/profile";
 import { useTranslation } from "react-i18next";
 import dayjs from "dayjs";
+import "dayjs/locale/ka";
 import { useAtom } from "jotai";
 import { meAtom } from "@/store/auth";
 import { useUploadUserPhoto } from "@/react-query/mutation/profile";
 import { useState } from "react";
 import ImageUploading, { ImageListType } from "react-images-uploading";
+// import { useGetUserInfo } from "@/react-query/query/profile";
 
 const UserCover = () => {
   const [me] = useAtom(meAtom);
+  // const [user] = useAtom(userAtom);
+  // const getInfo = useGetUserInfo(user?.user?.id as string);
 
   const { lang } = useParams();
   const { t } = useTranslation();
-  const year = dayjs(me?.created_at).format("YYYY");
-  const month = dayjs(me?.created_at).format("MMM");
-  const dateTrans =
-    lang === "en" ? month + " " + year : year + " " + t(`months.${month}`);
+
   const coverName = lang == "en" ? me?.name_en : me?.name_ka;
 
   //new uploader
   const uImage = String(me?.image);
 
-  const defImage = String(me?.image).length < 1 ? false : true;
+  const defImage =
+    me?.image === "" || typeof me?.image === "undefined" ? false : true;
   const [images, setImages] = useState<ImageListType>([]);
   const [hasDef, setHasDef] = useState<boolean>(defImage);
 
@@ -61,6 +63,7 @@ const UserCover = () => {
     deletePhoto(fnParams, {
       onSuccess: () => {
         setHasDef(false);
+        console.log("waishala");
       },
     });
   };
@@ -69,7 +72,7 @@ const UserCover = () => {
     <>
       <div className="bg-secondary flex h-[250px] shadow-sm">
         <div className="mx-auto flex w-4/5 flex-row items-center space-x-8 py-12">
-          {!hasDef ? (
+          {hasDef ? (
             <div className="relative">
               <Avatar className="h-[150px] w-[150px] cursor-pointer">
                 <AvatarImage
@@ -82,7 +85,7 @@ const UserCover = () => {
               </Avatar>
               {me?.image && (
                 <>
-                  <div className="bg-muted/50 inset-0 flex items-center justify-center rounded-full border opacity-0 transition-opacity duration-200 hover:opacity-100">
+                  <div className="bg-muted/50 absolute inset-0 flex h-[150px] w-[150px] items-center justify-center rounded-full border opacity-0 transition-opacity duration-200 hover:opacity-100">
                     <Button
                       variant="ghost"
                       size="icon"
@@ -140,7 +143,8 @@ const UserCover = () => {
             <div className="text-muted flex flex-row gap-3">
               <CalendarDays size={20} />
               <span>
-                {t("layout.joined")} {dateTrans}
+                {t("layout.joined")}{" "}
+                {dayjs(me?.created_at).locale(`${lang}`).format("MMM, YYYY")}
               </span>
             </div>
           </div>

@@ -4,22 +4,18 @@ import { useEffect } from "react";
 import { supabase } from "@/supabase";
 import { userAtom, meAtom } from "@/store/auth";
 import { useSetAtom, useAtomValue } from "jotai";
-// import { useGetUserRatedMovies } from "@/react-query/query/movies";
 
 function App() {
   const setUser = useSetAtom(userAtom);
-  // const setRatedMovies = useSetAtom(ratedMoviesAtom);
   const setMe = useSetAtom(meAtom);
 
   const user = useAtomValue(userAtom);
   const getInfo = useGetUserInfo(user?.user?.id as string);
-  // const ratedMovies = useGetUserRatedMovies(getInfo?.id as string);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setUser(session);
       setMe(getInfo);
-      // setRatedMovies(ratedMovies);
     });
 
     const {

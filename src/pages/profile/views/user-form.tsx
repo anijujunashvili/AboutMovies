@@ -18,7 +18,6 @@ const UserForm = () => {
 
   const queryClient = useQueryClient();
   const { t } = useTranslation();
-  // const [file, setFile] = useState<File | null>(null);
 
   const {
     register,
@@ -108,18 +107,6 @@ const UserForm = () => {
                 </div>
               </div>
               <div className="w-1/3 space-y-6">
-                {/* {!me?.image && (
-                  <div className="space-y-1">
-                    <Label htmlFor="image"> Avatar</Label>
-                    <Input
-                      type="file"
-                      name="image"
-                      onChange={handleUploadImage}
-                      className="border-secondary focus:border-primary rounded-none border-b focus-visible:ring-0"
-                    />
-                  </div>
-                )} */}
-
                 <div className="flex justify-end">
                   <Button className="mt-6 w-full">Edit</Button>
                 </div>

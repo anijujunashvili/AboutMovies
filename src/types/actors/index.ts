@@ -27,6 +27,21 @@ export type MapedActorType = {
   count: number;
 };
 
+export type ActorTypeWithPag = {
+  born: string;
+  created_at: string;
+  id: number;
+  image: string;
+  name_en: string;
+  name_ka: string;
+  nominations: number;
+  rating_count: number;
+  rating_sum: number;
+  oscar: number;
+  wins: number;
+  count: number;
+};
+
 export type Actor = {
   id: number;
   name_ka: string;

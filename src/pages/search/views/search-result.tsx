@@ -16,10 +16,15 @@ import { APP_PATHS } from "@/routes/enum";
 import { shortenText } from "@/utils";
 import { Star } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import UserRating from "@/components/movies-list/user-rating";
+import { useGetUserRatedMovies } from "@/react-query/query/movies";
+import { meAtom } from "@/store/auth";
+import { useAtom } from "jotai";
 
 const SearchReasult = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchParams] = useSearchParams();
+  const [me] = useAtom(meAtom);
   const { lang } = useParams();
   const { t } = useTranslation();
   qs.parse(searchParams.toString());
@@ -50,7 +55,12 @@ const SearchReasult = () => {
   for (let i = 0; i < maxPage; i++) {
     pagination.push(i + 1);
   }
+  const { data: userR } = useGetUserRatedMovies(String(me?.id));
 
+  const getYourRating = (m_id: number) => {
+    const rating = userR?.find((item) => item.m_id === m_id);
+    return rating?.rating;
+  };
   return (
     <div className="mb-8 mt-8 flex flex-col space-y-10">
       {isPending ? (
@@ -63,10 +73,12 @@ const SearchReasult = () => {
               className="shadow-sx max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800"
             >
               <Link to={`${navigateLink}${d.id}`}>
-                <img
-                  className="mx-auto w-full rounded-t-lg"
-                  src={import.meta.env.VITE_SUPABASE_STORAGE_URL + d.image}
-                />
+                <div className="h-[350px]">
+                  <img
+                    className="mx-auto h-full w-full shrink-0 rounded-t-lg object-cover"
+                    src={import.meta.env.VITE_SUPABASE_STORAGE_URL + d.image}
+                  />
+                </div>
               </Link>
               <div className="p-5">
                 <Link to={`${navigateLink}${d.id}`}>
@@ -77,9 +89,23 @@ const SearchReasult = () => {
                   </h5>
                 </Link>
                 {where === "movies" && (
-                  <div className="flex flex-row gap-1">
-                    <Star size={20} className="text-primary" fill="#ffc300" />
-                    <span className="dark:text-secondary">8.2</span>
+                  <div className="flex flex-row space-x-4">
+                    <div className="flex flex-row gap-1">
+                      <Star size={20} className="text-primary" fill="#ffc300" />
+                      <span className="dark:text-secondary">
+                        {d.rating_count > 0
+                          ? (d.rating_sum / d.rating_count).toFixed(1)
+                          : 0}
+                      </span>
+                    </div>
+                    <UserRating
+                      rating={Number(getYourRating(d?.id))}
+                      mid={d?.id}
+                      nameKa={d?.name_ka}
+                      nameEn={d?.name_en}
+                      rSum={d?.rating_sum}
+                      rCount={d?.rating_count}
+                    />
                   </div>
                 )}
               </div>
