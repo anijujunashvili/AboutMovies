@@ -32,13 +32,15 @@ const MovieNews = ({
     const newsPath = `/${lang}/${APP_PATHS.NEWS}/${id}`;
     navigate(newsPath);
   };
+  const hStyles =
+    lang === "ka"
+      ? "text-secondary font-primaryRegular border-primary mb-4 border-l-4 pl-3 pt-1 text-3xl font-bold"
+      : "text-secondary uppercase border-primary mb-4 border-l-4 pl-3 pt-1 text-3xl font-bold";
   return (
     <div className="mb-14 mt-10 flex">
       <div className="mx-auto w-full space-y-6 px-4 lg:w-5/6">
         <div>
-          <h3 className="text-secondary font-primaryRegular border-primary mb-4 border-l-4 pl-3 pt-1 text-3xl font-bold">
-            {headline}
-          </h3>
+          <h3 className={hStyles}>{headline}</h3>
         </div>
 
         <Carousel

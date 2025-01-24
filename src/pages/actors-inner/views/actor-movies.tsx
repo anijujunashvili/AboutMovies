@@ -12,14 +12,15 @@ const ActorMovies = () => {
 
   const { data } = useGetActorMoviesList(Number(id));
   const moviesUrl = `/${lang}/${APP_PATHS.MOVIES}/`;
-
+  const hStyles =
+    lang === "ka"
+      ? "text-secondary font-primaryRegular border-primary mt-2 border-l-4 pl-3 pt-1 text-3xl font-bold"
+      : "text-secondary uppercase border-primary mt-2 border-l-4 pl-3 pt-1 text-3xl font-bold";
   return (
     <>
       <div className="flex flex-col">
         <div>
-          <h3 className="text-secondary font-primaryRegular border-primary mt-2 border-l-4 pl-3 pt-1 text-3xl font-bold">
-            {t("actor.movies")}
-          </h3>
+          <h3 className={hStyles}>{t("actor.movies")}</h3>
         </div>
         <div className="my-10 flex flex-col space-y-4">
           {data

@@ -54,13 +54,15 @@ const UserReviews = () => {
       });
     }
   };
+  const hStyles =
+    lang === "ka"
+      ? "text-secondary font-primaryRegular font-bold border-primary border-l-4 pl-3 pt-1 text-3xl"
+      : "text-secondary uppercase font-bold border-primary border-l-4 pl-3 pt-1 text-3xl";
   return (
     <>
       <div className="mb-10 flex flex-col space-y-4">
         <div className="pb-4">
-          <h3 className="text-secondary font-primaryRegular border-primary border-l-4 pl-3 pt-1 text-3xl">
-            {t("movies.user_reviews")}
-          </h3>
+          <h3 className={hStyles}>{t("movies.user_reviews")}</h3>
         </div>
         <div>
           {Array.isArray(userReviews) && userReviews.length !== 0 && (

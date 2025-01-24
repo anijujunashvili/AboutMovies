@@ -12,10 +12,11 @@ import { QUERY_KEYS } from "@/react-query/query/enum";
 import { useQueryClient } from "@tanstack/react-query";
 import { useAtom } from "jotai";
 import { meAtom } from "@/store/auth";
+import { useParams } from "react-router-dom";
 
 const UserForm = () => {
   const [me] = useAtom(meAtom);
-
+  const { lang } = useParams();
   const queryClient = useQueryClient();
   const { t } = useTranslation();
 
@@ -47,12 +48,15 @@ const UserForm = () => {
       },
     });
   };
-
+  const hStyles =
+    lang === "ka"
+      ? "text-secondary font-primaryRegular border-primary border-l-4 pl-3 text-3xl font-bold"
+      : "text-secondary uppercase border-primary border-l-4 pl-3 text-3xl font-bold";
   return (
     <>
       <div className="mb-10">
         <div className="mx-auto flex flex-col p-4 py-10 lg:w-5/6">
-          <h3 className="text-secondary border-primary border-l-4 pl-3 text-3xl font-bold">
+          <h3 className={hStyles}>
             {t("profile.profile")}
             {isPending ? "loading..." : ""}
           </h3>

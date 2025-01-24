@@ -19,13 +19,14 @@ const MoviesList = ({ headline }: { headline: string }) => {
   const { lang } = useParams();
 
   const { data: Movies } = useGetMoviesHome(me?.id);
-
+  const hStyles =
+    lang === "ka"
+      ? "text-secondary font-primaryRegular border-primary border-l-4 pl-3 pt-1 text-3xl font-bold"
+      : "text-secondary uppercase border-primary border-l-4 pl-3 pt-1 text-3xl font-bold";
   return (
     <div className="mb-14 mt-6 flex lg:mt-10">
       <div className="mx-auto w-full flex-col space-y-10 px-4 lg:w-5/6">
-        <h3 className="text-secondary font-primaryRegular border-primary border-l-4 pl-3 pt-1 text-3xl font-bold">
-          {headline}
-        </h3>
+        <h3 className={hStyles}>{headline}</h3>
         <Carousel
           orientation="horizontal"
           opts={{

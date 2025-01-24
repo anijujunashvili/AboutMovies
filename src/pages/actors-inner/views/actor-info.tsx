@@ -8,13 +8,20 @@ const ActorInfo = () => {
   const { id, lang } = useParams();
   const { t } = useTranslation();
   const { data: info } = useGetActorInfo(Number(id));
-
+  const hStyles =
+    lang === "ka"
+      ? "dark:text-secondary font-primaryRegular pb-3 text-4xl font-bold"
+      : "dark:text-secondary uppercase pb-3 text-4xl font-bold";
+  const bioStyles =
+    lang === "ka"
+      ? "text-secondary font-primaryRegular border-primary mb-4 mt-2 border-l-4 pl-3 pt-1 text-3xl font-bold"
+      : "text-secondary uppercase border-primary mb-4 mt-2 border-l-4 pl-3 pt-1 text-3xl font-bold";
   return (
     <>
-      <div className="mb-10 flex flex-col">
-        <div className="flex flex-row justify-between gap-4">
+      <div className="mb-10 mt-2 flex flex-col">
+        <div className="flex flex-row justify-between gap-2">
           <div className="flex flex-col gap-1">
-            <div className="dark:text-secondary font-primaryRegular pb-4 text-4xl font-bold">
+            <div className={hStyles}>
               {lang == "ka" ? info?.name_ka : info?.name_en}
             </div>
           </div>
@@ -23,7 +30,7 @@ const ActorInfo = () => {
           <div className="flex md:w-1/3">
             <img
               src={import.meta.env.VITE_SUPABASE_STORAGE_URL + info?.image}
-              className="rounded-sm"
+              className="rounded-sm border"
             />
           </div>
 
@@ -61,9 +68,7 @@ const ActorInfo = () => {
         </div>
         <div className="mt-4 flex flex-col">
           <div>
-            <h3 className="text-secondary font-primaryRegular border-primary mb-4 mt-2 border-l-4 pl-3 pt-1 text-3xl font-bold">
-              {t("actor.bio")}
-            </h3>
+            <h3 className={bioStyles}>{t("actor.bio")}</h3>
           </div>
           <div className="dark:text-secondary">
             {lang === "ka" ? info?.biography_ka : info?.biography_en}

@@ -16,14 +16,15 @@ const BornToday = () => {
   const { lang } = useParams();
   const { t } = useTranslation();
   const actorsList = useGetActors();
-
+  const hStyle =
+    lang === "ka"
+      ? "text-secondary font-primaryRegular border-primary mb-6 border-l-4 pl-3 pt-1 text-3xl font-bold"
+      : "text-secondary uppercase border-primary mb-6 border-l-4 pl-3 pt-1 text-3xl font-bold";
   return (
     <div className="mb-14 mt-10 flex">
       <div className="mx-auto w-full flex-col space-y-4 px-4 lg:w-5/6">
         <div>
-          <h3 className="text-secondary font-primaryRegular border-primary mb-6 border-l-4 pl-3 pt-1 text-3xl font-bold">
-            {t("layout.actors")}
-          </h3>
+          <h3 className={hStyle}>{t("layout.actors")}</h3>
         </div>
 
         <Carousel

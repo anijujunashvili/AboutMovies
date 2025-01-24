@@ -30,13 +30,16 @@ const MovieInfo = () => {
     String(me?.id),
     Number(id),
   );
-
+  const nameStyles =
+    lang === "ka"
+      ? "dark:text-secondary font-primaryRegular text-4xl font-bold"
+      : "dark:text-secondary uppercase text-4xl font-bold";
   return (
     <>
       <div className="mb-10 flex flex-col">
         <div className="flex flex-col justify-between gap-4 md:flex-row">
           <div className="flex flex-col gap-1">
-            <div className="dark:text-secondary font-primaryRegular text-4xl font-bold">
+            <div className={nameStyles}>
               {lang == "ka" ? info?.name_ka : info?.name_en}
             </div>
             <span className="text-sm text-gray-700">
