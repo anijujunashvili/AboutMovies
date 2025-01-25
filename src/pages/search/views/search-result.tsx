@@ -73,14 +73,14 @@ const SearchReasult = () => {
               className="shadow-sx max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800"
             >
               <Link to={`${navigateLink}${d.id}`}>
-                <div className="h-[350px]">
+                <div className="h-[240px] md:h-[350px]">
                   <img
                     className="mx-auto h-full w-full shrink-0 rounded-t-lg object-cover"
                     src={import.meta.env.VITE_SUPABASE_STORAGE_URL + d.image}
                   />
                 </div>
               </Link>
-              <div className="p-5">
+              <div className="p-3 md:p-5">
                 <Link to={`${navigateLink}${d.id}`}>
                   <h5 className="text-md mb-2 font-semibold tracking-tight text-gray-900 hover:underline dark:text-white">
                     {lang == "ka"

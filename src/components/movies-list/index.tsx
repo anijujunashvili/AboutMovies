@@ -34,7 +34,7 @@ const MoviesList = ({ headline }: { headline: string }) => {
           }}
           className="w-full"
         >
-          <CarouselContent className="w-full">
+          <CarouselContent className="w-full space-x-4">
             {Movies?.map((movie) => (
               <CarouselItem
                 key={movie.id}
@@ -42,7 +42,7 @@ const MoviesList = ({ headline }: { headline: string }) => {
               >
                 <div className="max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800">
                   <Link to={`/${lang}/${APP_PATHS.MOVIES}/${movie.id}`}>
-                    <div className="h-[350px]">
+                    <div className="h-[240px] md:h-[350px]">
                       <img
                         className="mx-auto h-full w-full shrink-0 rounded-t-lg object-cover"
                         src={
@@ -53,7 +53,7 @@ const MoviesList = ({ headline }: { headline: string }) => {
                       />
                     </div>
                   </Link>
-                  <div className="p-5">
+                  <div className="p-3 md:p-5">
                     <div className="mb-4 flex flex-row items-center space-x-4">
                       <div className="flex flex-row gap-1">
                         <Star
@@ -79,7 +79,7 @@ const MoviesList = ({ headline }: { headline: string }) => {
                       />
                     </div>
                     <Link to={`/${lang}/${APP_PATHS.MOVIES}/${movie.id}`}>
-                      <h5 className="text-md mb-2 font-semibold tracking-tight text-gray-900 hover:underline dark:text-white">
+                      <h5 className="md:text-md mb-2 text-sm font-semibold tracking-tight text-gray-900 hover:underline dark:text-white">
                         {lang == "ka"
                           ? shortenText(String(movie.name_ka), 20)
                           : shortenText(String(movie.name_en), 20)}
