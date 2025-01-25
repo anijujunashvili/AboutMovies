@@ -7,15 +7,17 @@ import { useTranslation } from "react-i18next";
 import dayjs from "dayjs";
 import "dayjs/locale/ka";
 import { useAtom } from "jotai";
-import { meAtom } from "@/store/auth";
+import { meAtom, userAtom } from "@/store/auth";
 import { useUploadUserPhoto } from "@/react-query/mutation/profile";
 import { useState } from "react";
 import ImageUploading, { ImageListType } from "react-images-uploading";
+import { useQueryClient } from "@tanstack/react-query";
+import { QUERY_KEYS } from "@/react-query/query/enum";
 // import { useGetUserInfo } from "@/react-query/query/profile";
 
 const UserCover = () => {
   const [me] = useAtom(meAtom);
-  // const [user] = useAtom(userAtom);
+  const [user] = useAtom(userAtom);
   // const getInfo = useGetUserInfo(user?.user?.id as string);
 
   const { lang } = useParams();
@@ -26,15 +28,15 @@ const UserCover = () => {
   //new uploader
   const uImage = String(me?.image);
 
-  const defImage =
-    me?.image === "" || typeof me?.image === "undefined" ? false : true;
+  const defImage = me?.image === null || uImage.length <= 0 ? false : true;
   const [images, setImages] = useState<ImageListType>([]);
+  console.log(defImage);
   const [hasDef, setHasDef] = useState<boolean>(defImage);
-
+  console.log(defImage, hasDef);
   const maxNumber = 1;
 
   const { mutate: UploadImg } = useUploadUserPhoto();
-
+  const queryClient = useQueryClient();
   const onChange = (
     imageList: ImageListType,
     addUpdateIndex: number[] | undefined,
@@ -47,6 +49,9 @@ const UserCover = () => {
       const payload = { user_id: me?.id, image: imageList[0].file };
       UploadImg(payload, {
         onSuccess: () => {
+          queryClient.invalidateQueries({
+            queryKey: [QUERY_KEYS.GET_USER, user?.user?.id],
+          });
           console.log("aitvirta");
         },
       });

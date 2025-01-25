@@ -2,12 +2,12 @@ import { supabase } from "@/supabase";
 import { userInfoType } from "@/types/profile";
 import { Database } from "../supabase.types";
 
-type test = {
+type uploadImageType = {
   user_id: string;
   image: File | null;
 };
 
-export const uploadUserPhoto = async (payload: test) => {
+export const uploadUserPhoto = async (payload: uploadImageType) => {
   if (payload.image) {
     return supabase.storage
       .from("movies")
@@ -58,16 +58,15 @@ type deletePhoto = {
 };
 
 export const deleteUserPhoto = async (payload: deletePhoto) => {
-  // const imagedel = import.meta.env.VITE_SUPABASE_STORAGE_URL + payload.image;
-  const test = "462342740_18444065272071290_6673994856655417582_n.jpg";
+  const imagePath = payload.image.replace("movies/", "");
   console.log(payload.image);
-  supabase.storage
+  await supabase.storage
     .from("movies")
-    .remove([test])
+    .remove([imagePath])
     .then(() => {
       return supabase
         .from("profiles")
-        .update({ image: "" })
+        .update({ image: null })
         .eq("id", payload.userId)
         .throwOnError()
         .then((result) => {

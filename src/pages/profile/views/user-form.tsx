@@ -56,10 +56,8 @@ const UserForm = () => {
     <>
       <div className="mb-10">
         <div className="mx-auto flex flex-col p-4 py-10 lg:w-5/6">
-          <h3 className={hStyles}>
-            {t("profile.profile")}
-            {isPending ? "loading..." : ""}
-          </h3>
+          <h3 className={hStyles}>{t("profile.profile")}</h3>
+          {isPending ? t("layout.loading") : ""}
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="mt-10 flex w-full flex-row space-x-8">
               <div className="w-1/3 space-y-6">
