@@ -37,10 +37,7 @@ const Register = () => {
     <div className="bg-background min-h-screen font-[sans-serif] md:h-screen">
       <div
         className="grid h-full min-h-screen grid-cols-1 items-center gap-8 bg-contain bg-repeat-round md:grid-cols-2 md:bg-cover md:bg-no-repeat"
-        style={{
-          backgroundImage:
-            "url(https://images.unsplash.com/photo-1499951360447-b19be8fe80f5)",
-        }}
+        style={{ backgroundImage: "url('../auth-bg.png')" }}
       >
         <div className="p-4 max-md:order-1"></div>
 

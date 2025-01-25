@@ -33,6 +33,7 @@ const AvatarDropdown = () => {
           <Avatar className="border">
             <AvatarImage
               src={import.meta.env.VITE_SUPABASE_STORAGE_URL + me?.image}
+              className="object-cover"
             />
 
             <AvatarFallback className="text-secondary font-semibold">

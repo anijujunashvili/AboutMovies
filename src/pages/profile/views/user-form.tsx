@@ -59,10 +59,12 @@ const UserForm = () => {
           <h3 className={hStyles}>{t("profile.profile")}</h3>
           {isPending ? t("layout.loading") : ""}
           <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="mt-10 flex w-full flex-row space-x-8">
-              <div className="w-1/3 space-y-6">
-                <div className="space-y-1">
-                  <Label htmlFor="name_ka">{t("profile.name_ka")}</Label>
+            <div className="mt-10 flex w-full flex-col space-y-2 md:flex-row md:flex-wrap md:gap-4 md:space-y-0 lg:flex-nowrap">
+              <div className="w-full space-y-8 md:w-[45%] lg:w-1/3">
+                <div className="dark:text-secondary space-y-2 md:space-y-1">
+                  <Label htmlFor="name_ka" className="font-semibold">
+                    {t("profile.name_ka")}
+                  </Label>
                   <Input
                     id="name_ka"
                     {...register("name_ka")}
@@ -72,8 +74,10 @@ const UserForm = () => {
                     {errors.name_ka && errors.name_ka.message}
                   </span>
                 </div>
-                <div className="space-y-1">
-                  <Label htmlFor="name_en">{t("profile.name_en")}</Label>
+                <div className="dark:text-secondary space-y-2 md:space-y-1">
+                  <Label htmlFor="name_en" className="font-semibold">
+                    {t("profile.name_en")}
+                  </Label>
                   <Input
                     id="name_en"
                     {...register("name_en")}
@@ -84,9 +88,11 @@ const UserForm = () => {
                   </span>
                 </div>
               </div>
-              <div className="w-1/3 space-y-6">
-                <div className="space-y-1">
-                  <Label htmlFor="email">{t("profile.email")}</Label>
+              <div className="w-full space-y-8 md:w-[45%] lg:w-1/3">
+                <div className="dark:text-secondary space-y-2 md:space-y-1">
+                  <Label htmlFor="email" className="font-semibold">
+                    {t("profile.email")}
+                  </Label>
                   <Input
                     id="email"
                     {...register("email")}
@@ -96,8 +102,10 @@ const UserForm = () => {
                     {errors.email && errors.email.message}
                   </span>
                 </div>
-                <div className="space-y-1">
-                  <Label htmlFor="phone">{t("profile.phone")}</Label>
+                <div className="dark:text-secondary space-y-2 md:space-y-1">
+                  <Label htmlFor="phone" className="font-semibold">
+                    {t("profile.phone")}
+                  </Label>
                   <Input
                     id="phone"
                     {...register("phone")}
@@ -108,8 +116,8 @@ const UserForm = () => {
                   </span>
                 </div>
               </div>
-              <div className="w-1/3 space-y-6">
-                <div className="flex justify-end">
+              <div className="w-full space-y-6 lg:w-1/3">
+                <div className="flex lg:justify-end">
                   <Button className="mt-6 w-full">Edit</Button>
                 </div>
               </div>

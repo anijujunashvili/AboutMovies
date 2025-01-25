@@ -75,13 +75,14 @@ const UserCover = () => {
 
   return (
     <>
-      <div className="bg-secondary flex h-[250px] shadow-sm">
-        <div className="mx-auto flex w-4/5 flex-row items-center space-x-8 py-12">
+      <div className="bg-secondary flex h-auto shadow-sm lg:h-[250px] dark:bg-gray-900">
+        <div className="mx-auto flex w-5/6 flex-col items-center space-y-8 py-12 lg:flex-row lg:space-x-8">
           {hasDef ? (
             <div className="relative">
               <Avatar className="h-[150px] w-[150px] cursor-pointer">
                 <AvatarImage
                   src={import.meta.env.VITE_SUPABASE_STORAGE_URL + uImage}
+                  className="object-cover"
                 />
 
                 <AvatarFallback className="text-secondary text-4xl font-bold">
@@ -120,7 +121,7 @@ const UserCover = () => {
                         <img
                           src={image["data_url"]}
                           alt=""
-                          className="h-[150px] w-[150px] rounded-full"
+                          className="h-[150px] w-[150px] rounded-full object-cover"
                         />
                       </div>
                     ))}
@@ -144,8 +145,10 @@ const UserCover = () => {
           )}
 
           <div className="space-y-4">
-            <span className="text-5xl font-bold text-white">{coverName}</span>
-            <div className="text-muted flex flex-row gap-3">
+            <span className="text-2xl font-bold text-white md:text-5xl">
+              {coverName}
+            </span>
+            <div className="text-muted dark:text-secondary flex flex-row justify-center gap-3 lg:justify-start">
               <CalendarDays size={20} />
               <span>
                 {t("layout.joined")}{" "}
