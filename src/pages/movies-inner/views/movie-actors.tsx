@@ -8,6 +8,8 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { CalendarDays } from "lucide-react";
 import { APP_PATHS } from "@/routes/enum";
+import dayjs from "dayjs";
+import "dayjs/locale/ka";
 
 const MovieActors: React.FC<ActorsPropsType> = ({ actors }) => {
   const navigate = useNavigate();
@@ -36,6 +38,7 @@ const MovieActors: React.FC<ActorsPropsType> = ({ actors }) => {
                         import.meta.env.VITE_SUPABASE_STORAGE_URL +
                         a.actors?.image
                       }
+                      className="h-full w-full object-cover"
                     />
                     <AvatarFallback>
                       {lang === "ka"
@@ -50,7 +53,9 @@ const MovieActors: React.FC<ActorsPropsType> = ({ actors }) => {
                     <div className="flex items-center">
                       <CalendarDays className="mr-2 h-4 w-4 opacity-70" />
                       <span className="text-muted-foreground text-xs">
-                        {a?.actors?.born}
+                        {dayjs(a?.actors?.born)
+                          .locale(`${lang}`)
+                          .format("DD MMM, YYYY")}
                       </span>
                     </div>
                   </div>

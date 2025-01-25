@@ -22,7 +22,11 @@ type searchType = {
 const SearchBar = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { t } = useTranslation();
-  const [selectValue, SetSelectValue] = useState("movies");
+  const location =
+    searchParams.get("from") !== ""
+      ? String(searchParams.get("from"))
+      : "movies";
+  const [selectValue, SetSelectValue] = useState(location);
   const searchDefValues = {
     search: "",
     from: selectValue,

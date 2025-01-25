@@ -47,7 +47,7 @@ const MovieInfo = () => {
             </span>
           </div>
           <div className="flex flex-col justify-end space-y-4 md:flex-row md:space-x-4 md:space-y-0">
-            <div className="flex flex-col">
+            <div className="flex flex-col gap-1">
               <div className="dark:text-secondary text-left text-sm text-gray-700 md:text-right">
                 {t("movies.your_rating")}
               </div>
@@ -60,7 +60,7 @@ const MovieInfo = () => {
                 nameEn={String(info?.name_en)}
               />
             </div>
-            <div className="flex flex-col">
+            <div className="flex flex-col gap-1">
               <div className="dark:text-secondary text-left text-sm text-gray-700 md:text-right">
                 {t("movies.user_rating")}
               </div>

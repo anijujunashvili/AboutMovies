@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { Database } from "@/supabase/supabase.types";
 import dayjs from "dayjs";
 import "dayjs/locale/ka";
@@ -13,7 +13,9 @@ const NewsForInnerPages = ({
   headline: string;
   news: Database["public"]["Tables"]["news"]["Row"][];
 }) => {
-  const { lang } = useParams();
+  const { lang, id } = useParams();
+  const location = useLocation();
+
   const hStyles =
     lang === "ka"
       ? "text-secondary font-primaryRegular border-primary mb-3 border-l-4 pl-3 pt-1 text-3xl font-bold"
@@ -26,32 +28,39 @@ const NewsForInnerPages = ({
         </div>
         <div className="">
           <ScrollArea className="h-screen w-full">
-            {news?.map((n) => (
-              <div
-                key={n.id}
-                className="mb-4 flex h-[90px] cursor-pointer flex-row gap-2 overflow-hidden rounded-md border shadow-md dark:border-gray-800"
-              >
-                <div className="h-[90px] w-1/3">
-                  <img
-                    src={import.meta.env.VITE_SUPABASE_STORAGE_URL + n.image}
-                    className="h-full max-h-[90px] w-full shrink-0 rounded-l-md object-cover"
-                  />
-                </div>
-                <div className="flex w-2/3 flex-col p-1">
-                  <Link
-                    to={`/${lang}/${APP_PATHS.NEWS}/${n.id}`}
-                    className="dark:text-secondary text-xs font-normal hover:underline"
-                  >
-                    {lang === "ka"
-                      ? shortenText(String(n.title_ka), 60)
-                      : shortenText(String(n.title_en), 60)}
-                  </Link>
-                  <div className="text-muted-foreground pt-1 text-xs">
-                    {dayjs(n.created_at).locale(`${lang}`).format("DD MMM")}
+            {news
+              ?.filter((a) => {
+                if (location.pathname.includes("news")) {
+                  return a.id !== Number(id);
+                }
+                return true;
+              })
+              .map((n) => (
+                <div
+                  key={n.id}
+                  className="mb-4 flex h-[90px] cursor-pointer flex-row gap-2 overflow-hidden rounded-md border shadow-md dark:border-gray-800"
+                >
+                  <div className="h-[90px] w-1/3">
+                    <img
+                      src={import.meta.env.VITE_SUPABASE_STORAGE_URL + n.image}
+                      className="h-full max-h-[90px] w-full shrink-0 rounded-l-md object-cover"
+                    />
+                  </div>
+                  <div className="flex w-2/3 flex-col p-1">
+                    <Link
+                      to={`/${lang}/${APP_PATHS.NEWS}/${n.id}`}
+                      className="dark:text-secondary text-xs font-normal hover:underline"
+                    >
+                      {lang === "ka"
+                        ? shortenText(String(n.title_ka), 60)
+                        : shortenText(String(n.title_en), 60)}
+                    </Link>
+                    <div className="text-muted-foreground pt-1 text-xs">
+                      {dayjs(n.created_at).locale(`${lang}`).format("DD MMM")}
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
           </ScrollArea>
         </div>
       </div>

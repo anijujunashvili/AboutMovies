@@ -70,7 +70,7 @@ const UserRating = ({
   return (
     <>
       {typeof user?.user.id !== "undefined" && (
-        <div className="">
+        <div className="gap-1">
           {rating > 0 || lastRated.id === mid ? (
             <div className="flex flex-row gap-1">
               <Star

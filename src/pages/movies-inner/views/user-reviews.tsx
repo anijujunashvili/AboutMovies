@@ -38,12 +38,8 @@ const UserReviews = () => {
     if (fieldsValues && me) {
       const payload = {
         ...fieldsValues,
-        name_ka: me?.name_ka,
-        name_en: me?.name_en,
-        image: me?.image,
         user_id: me?.id,
         m_id: Number(id),
-        likes: 0,
       };
 
       addReview(payload, {
@@ -123,7 +119,13 @@ const UserReviews = () => {
                 />
 
                 <div className="flex flex-row justify-between">
-                  <div>{errors.comment && <span>erori</span>}</div>
+                  <div>
+                    {errors.comment && (
+                      <span className="text-destructive text-sm">
+                        {t("layout.reviews_error")}
+                      </span>
+                    )}
+                  </div>
                   <div>
                     <Button
                       type="submit"

@@ -1,6 +1,6 @@
 {
   "home": "Home",
-  "about": "About us",
+  "about": "About me",
   "movies": "Movies",
   "search": "Search",
   "advanced_search": "Advanced search",
@@ -22,5 +22,6 @@
   "not_found": "Oops! We couldn't find any results for your search.",
   "missing": "Something's missing.",
   "sorry": "Sorry, we can't find that page. You'll find lots to explore on the home page.",
-  "rated_movies": "Rated movies"
+  "rated_movies": "Rated movies",
+  "reviews_error": "Your review must be 20 characters or more."
 }

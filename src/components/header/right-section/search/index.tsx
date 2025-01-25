@@ -48,7 +48,7 @@ const SearchComp = () => {
 
   const toAdvancedSearch = () => {
     closeModal();
-    navigate(APP_PATHS.SEARCH);
+    navigate(APP_PATHS.SEARCH + "?from=movies");
   };
 
   const Key = watch("search").toString();

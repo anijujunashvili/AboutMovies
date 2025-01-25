@@ -55,7 +55,7 @@ const MobileMenu = () => {
                 </li>
                 <li className="hover:text-primary border-b border-gray-300 py-4 dark:border-gray-700">
                   <Link
-                    to={`/${lang}/${APP_PATHS.SEARCH}`}
+                    to={`/${lang}/${APP_PATHS.SEARCH}?from=movies`}
                     className="hover:underline"
                   >
                     {t("layout.movies")}

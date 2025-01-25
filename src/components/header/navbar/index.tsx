@@ -1,9 +1,11 @@
 import { NavLink, NavLinkRenderProps } from "react-router";
 import { useTranslation } from "react-i18next";
 import { APP_PATHS } from "@/routes/enum";
+import { useParams } from "react-router";
 
 const NavBar = () => {
   const { t } = useTranslation();
+  const { lang } = useParams();
   const ActiveMenu = (props: NavLinkRenderProps) => {
     const { isActive } = props;
     return isActive
@@ -28,7 +30,10 @@ const NavBar = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink to={APP_PATHS.SEARCH} className={ActiveMenu}>
+          <NavLink
+            to={`/${lang}/${APP_PATHS.SEARCH}?from=movies`}
+            className={ActiveMenu}
+          >
             {t("layout.movies")}
           </NavLink>
         </li>
