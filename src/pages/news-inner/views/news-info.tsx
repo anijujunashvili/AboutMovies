@@ -18,10 +18,10 @@ const NewsInfo = () => {
           </span>
         </div>
         <div className="flex flex-col space-y-4">
-          <div className="h-[300px] w-full">
+          <div className="my-4 h-[300px] w-full">
             <img
               src={import.meta.env.VITE_SUPABASE_STORAGE_URL + data?.image}
-              className="h-full shrink-0 rounded-sm object-cover object-top"
+              className="h-full shrink-0 rounded-sm border object-cover object-top dark:border-gray-800"
             />
           </div>
           <div className="text-md mb-4 dark:text-gray-300">

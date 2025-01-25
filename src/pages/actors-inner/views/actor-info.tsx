@@ -30,7 +30,7 @@ const ActorInfo = () => {
           <div className="flex md:w-1/3">
             <img
               src={import.meta.env.VITE_SUPABASE_STORAGE_URL + info?.image}
-              className="rounded-sm border"
+              className="rounded-sm border dark:border-gray-700"
             />
           </div>
 

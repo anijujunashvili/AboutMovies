@@ -4,6 +4,7 @@ import dayjs from "dayjs";
 import "dayjs/locale/ka";
 import { shortenText } from "@/utils";
 import { APP_PATHS } from "@/routes/enum";
+import { ScrollArea } from "../ui/scroll-area";
 
 const NewsForInnerPages = ({
   headline,
@@ -23,33 +24,35 @@ const NewsForInnerPages = ({
         <div>
           <h3 className={hStyles}>{headline}</h3>
         </div>
-        <div className="flex flex-col space-y-8">
-          {news?.map((n) => (
-            <div
-              key={n.id}
-              className="flex h-[90px] cursor-pointer flex-row gap-2 rounded-md border shadow-md"
-            >
-              <div className="h-[90px] w-1/3">
-                <img
-                  src={import.meta.env.VITE_SUPABASE_STORAGE_URL + n.image}
-                  className="h-full max-h-[90px] w-full shrink-0 rounded-l-md object-cover"
-                />
-              </div>
-              <div className="flex w-2/3 flex-col p-1">
-                <Link
-                  to={`/${lang}/${APP_PATHS.NEWS}/${n.id}`}
-                  className="dark:text-secondary text-xs font-normal hover:underline"
-                >
-                  {lang === "ka"
-                    ? shortenText(String(n.title_ka), 60)
-                    : shortenText(String(n.title_en), 60)}
-                </Link>
-                <div className="text-muted-foreground pt-1 text-xs">
-                  {dayjs(n.created_at).locale(`${lang}`).format("DD MMM")}
+        <div className="">
+          <ScrollArea className="h-screen w-full">
+            {news?.map((n) => (
+              <div
+                key={n.id}
+                className="mb-4 flex h-[90px] cursor-pointer flex-row gap-2 overflow-hidden rounded-md border shadow-md dark:border-gray-800"
+              >
+                <div className="h-[90px] w-1/3">
+                  <img
+                    src={import.meta.env.VITE_SUPABASE_STORAGE_URL + n.image}
+                    className="h-full max-h-[90px] w-full shrink-0 rounded-l-md object-cover"
+                  />
+                </div>
+                <div className="flex w-2/3 flex-col p-1">
+                  <Link
+                    to={`/${lang}/${APP_PATHS.NEWS}/${n.id}`}
+                    className="dark:text-secondary text-xs font-normal hover:underline"
+                  >
+                    {lang === "ka"
+                      ? shortenText(String(n.title_ka), 60)
+                      : shortenText(String(n.title_en), 60)}
+                  </Link>
+                  <div className="text-muted-foreground pt-1 text-xs">
+                    {dayjs(n.created_at).locale(`${lang}`).format("DD MMM")}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </ScrollArea>
         </div>
       </div>
     </div>

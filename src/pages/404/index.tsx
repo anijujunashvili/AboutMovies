@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const NotFount = () => {
   const { t } = useTranslation();
   return (
-    <section className="bg-white dark:bg-gray-900">
+    <section className="h-screen bg-white dark:bg-gray-900">
       <div className="mx-auto max-w-screen-xl px-4 py-8 lg:px-6 lg:py-16">
         <div className="mx-auto max-w-screen-sm text-center">
           <h1 className="text-primary dark:text-primary-500 mb-4 text-7xl font-extrabold tracking-tight lg:text-9xl">
