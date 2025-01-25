@@ -10,7 +10,7 @@ const NewsInfo = () => {
     <>
       <div className="flex flex-col space-y-2">
         <div className="flex flex-col space-y-2">
-          <h4 className="text-2xl font-semibold">
+          <h4 className="text-2xl font-semibold dark:text-white">
             {lang === "ka" ? data?.title_ka : data?.title_en}
           </h4>
           <span className="text-muted-foreground">
@@ -24,7 +24,7 @@ const NewsInfo = () => {
               className="h-full shrink-0 rounded-sm object-cover object-top"
             />
           </div>
-          <div className="text-md mb-4">
+          <div className="text-md mb-4 dark:text-gray-300">
             {lang === "ka" ? data?.description_ka : data?.description_en}
           </div>
         </div>

@@ -58,10 +58,10 @@ const MovieNews = ({
                 onClick={() => handleNavigate(n.id)}
               >
                 <div className="grid grid-cols-3 space-x-3 border-r dark:border-gray-700">
-                  <div className="col-span-1 grid h-[100px] overflow-hidden rounded-sm">
+                  <div className="col-span-1 grid h-[99px] overflow-hidden rounded-sm dark:border dark:border-gray-700">
                     <img
                       src={import.meta.env.VITE_SUPABASE_STORAGE_URL + n.image}
-                      className="h-full shrink-0 object-cover dark:border dark:border-gray-700"
+                      className="h-full w-full shrink-0 object-cover"
                     />
                   </div>
                   <div className="col-span-2 grid">

@@ -59,7 +59,7 @@ const UserForm = () => {
           <h3 className={hStyles}>{t("profile.profile")}</h3>
           {isPending ? t("layout.loading") : ""}
           <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="mt-10 flex w-full flex-col space-y-2 md:flex-row md:flex-wrap md:gap-4 md:space-y-0 lg:flex-nowrap">
+            <div className="mt-10 flex w-full flex-col space-y-2 md:flex-row md:flex-wrap md:gap-4 md:space-y-0 lg:flex-nowrap lg:space-x-8">
               <div className="w-full space-y-8 md:w-[45%] lg:w-1/3">
                 <div className="dark:text-secondary space-y-2 md:space-y-1">
                   <Label htmlFor="name_ka" className="font-semibold">
@@ -118,7 +118,9 @@ const UserForm = () => {
               </div>
               <div className="w-full space-y-6 lg:w-1/3">
                 <div className="flex lg:justify-end">
-                  <Button className="mt-6 w-full">Edit</Button>
+                  <Button className="mt-8 w-full md:mt-6 md:w-[92%] lg:w-full dark:text-white">
+                    Edit
+                  </Button>
                 </div>
               </div>
             </div>
