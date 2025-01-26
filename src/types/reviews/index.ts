@@ -33,3 +33,13 @@ export type userReiewsType = {
   created_at: string;
   profiles: Profiles;
 };
+
+export type reviewWithUserInfo = {
+  id: number;
+  name_ka: string;
+  name_en: string;
+  user_id: string;
+  image: string;
+  comment: string;
+  created_at: string;
+};

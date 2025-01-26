@@ -1,5 +1,5 @@
 import { supabase } from "..";
-import { userReview } from "@/types/reviews";
+import { userReview, reviewWithUserInfo } from "@/types/reviews";
 import { mapUserReviews } from "@/supabase/utils";
 
 export const addReview = async (payload: userReview) => {
@@ -9,15 +9,7 @@ export const addReview = async (payload: userReview) => {
     console.log("Error during adding review", error);
   }
 };
-type test = {
-  id: number;
-  name_ka: string;
-  name_en: string;
-  user_id: string;
-  image: string;
-  comment: string;
-  created_at: string;
-};
+
 export const getUserReviews = async (m_id: number) => {
   try {
     const result = await supabase
@@ -33,7 +25,7 @@ export const getUserReviews = async (m_id: number) => {
 
     const newAraay = mapUserReviews(result.data, profiles.data);
 
-    return newAraay as test[];
+    return newAraay as reviewWithUserInfo[];
   } catch (error) {
     console.log("Error during get reviews list", error);
   }
