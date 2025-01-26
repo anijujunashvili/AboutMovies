@@ -12,8 +12,7 @@ export const useEditProfileInfo = () => {
   return useMutation({
     mutationKey: [MUTATION_KEYS.EDIT_USER],
     mutationFn: fillUserInfo,
-    onSuccess: (data) => {
-      console.log("editze aq modis", data);
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.GET_USER] });
     },
   });

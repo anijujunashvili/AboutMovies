@@ -9,7 +9,7 @@ import "dayjs/locale/ka";
 import { useAtom } from "jotai";
 import { meAtom, userAtom } from "@/store/auth";
 import { useUploadUserPhoto } from "@/react-query/mutation/profile";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ImageUploading, { ImageListType } from "react-images-uploading";
 import { useQueryClient } from "@tanstack/react-query";
 import { QUERY_KEYS } from "@/react-query/query/enum";
@@ -56,6 +56,12 @@ const UserCover = () => {
     }
   };
   //new uploader
+
+  useEffect(() => {
+    const defImage =
+      me?.image === null || String(me?.image).length <= 0 ? false : true;
+    setHasDef(defImage);
+  }, [me]);
 
   const { mutate: deletePhoto } = useDeleteUserPhoto();
   const uId = me?.id as string;

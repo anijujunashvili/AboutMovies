@@ -24,7 +24,14 @@ const AvatarDropdown = () => {
     navigate(profilePath);
   };
 
-  const defName = lang === "en" ? me?.name_en[0] : me?.name_ka[0];
+  const defName =
+    lang === "en"
+      ? me?.name_en
+        ? me?.name_en[0]
+        : me?.email[0]
+      : me?.name_ka
+        ? me?.name_ka[0]
+        : me?.email[0];
 
   return (
     <>
