@@ -30,7 +30,6 @@ const UserReviews = () => {
   });
 
   const { data: userReviews, refetch } = useGetUserReviews(Number(id));
-
   const { mutate: addReview } = useAddUserReview();
 
   const onSubmit = async (fieldsValues: addReviewType) => {
@@ -74,6 +73,7 @@ const UserReviews = () => {
                               import.meta.env.VITE_SUPABASE_STORAGE_URL +
                               r.image
                             }
+                            className="h-full w-full object-cover"
                           />
                           <AvatarFallback className="dark:text-secondary font-bold">
                             {lang === "ka" ? r.name_ka[0] : r.name_en[0]}

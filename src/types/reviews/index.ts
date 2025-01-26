@@ -19,3 +19,17 @@ export type getUserReviewsType = {
   comment: string;
   created_at: string;
 };
+
+export type Profiles = {
+  id: string;
+  image: string;
+  name_en: string;
+  name_ka: string;
+};
+export type userReiewsType = {
+  comment: string;
+  user_id: string;
+  id: number;
+  created_at: string;
+  profiles: Profiles;
+};

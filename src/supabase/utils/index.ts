@@ -46,3 +46,18 @@ export const moviesWithUserRatings = (
 
   return newArray as MoviesWithRatingType[];
 };
+
+export const mapUserReviews = (
+  reviews: Tables<"user_reviews">[] | null,
+  profiles: Tables<"profiles">[] | null,
+) => {
+  return reviews?.map((r) => ({
+    id: r.id,
+    comment: r.comment,
+    created_at: r.created_at,
+    user_id: r.user_id,
+    name_ka: profiles?.find(({ id }) => id === r.user_id)?.name_ka,
+    name_en: profiles?.find(({ id }) => id === r.user_id)?.name_en,
+    image: profiles?.find(({ id }) => id === r.user_id)?.image,
+  }));
+};
