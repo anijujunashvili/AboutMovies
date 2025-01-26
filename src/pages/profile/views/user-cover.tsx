@@ -30,9 +30,8 @@ const UserCover = () => {
 
   const defImage = me?.image === null || uImage.length <= 0 ? false : true;
   const [images, setImages] = useState<ImageListType>([]);
-  console.log(defImage);
   const [hasDef, setHasDef] = useState<boolean>(defImage);
-  console.log(defImage, hasDef);
+
   const maxNumber = 1;
 
   const { mutate: UploadImg } = useUploadUserPhoto();
@@ -52,7 +51,6 @@ const UserCover = () => {
           queryClient.invalidateQueries({
             queryKey: [QUERY_KEYS.GET_USER, user?.user?.id],
           });
-          console.log("aitvirta");
         },
       });
     }

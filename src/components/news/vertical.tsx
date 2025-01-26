@@ -22,7 +22,7 @@ const NewsForInnerPages = ({
       : "text-secondary uppercase border-primary mb-3 border-l-4 pl-3 pt-1 text-3xl font-bold ";
   return (
     <div className="mb-14 flex">
-      <div className="mx-auto w-full flex-col space-y-8 px-4 md:w-5/6">
+      <div className="mx-auto w-full flex-col space-y-8 md:w-5/6">
         <div>
           <h3 className={hStyles}>{headline}</h3>
         </div>

@@ -20,9 +20,9 @@ const Banner = () => {
       <CarouselContent>
         {Array.from({ length: 5 }).map((_, index) => (
           <CarouselItem key={index} className="w-full">
-            <div className="h-[500px]">
+            <div className="h-[600px]">
               <div
-                className="flex h-full w-full items-center justify-center bg-cover bg-center bg-no-repeat"
+                className="flex h-full w-full items-center justify-center bg-cover bg-center bg-no-repeat object-top"
                 style={{ backgroundImage: "url('../banner1.jpg')" }}
               ></div>
             </div>
