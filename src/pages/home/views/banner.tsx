@@ -24,7 +24,11 @@ const Banner = () => {
               <div className="flex h-full w-full items-center justify-center">
                 <img
                   src="../banner.jpg"
-                  className="h-full w-full object-cover"
+                  className="hidden h-full w-full object-cover md:block"
+                />
+                <img
+                  src="../banner_mob.jpg"
+                  className="block h-full w-full object-cover md:hidden"
                 />
               </div>
             </div>
