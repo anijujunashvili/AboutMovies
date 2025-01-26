@@ -8,7 +8,7 @@ import {
 import { useRef } from "react";
 
 const Banner = () => {
-  const plugin = useRef(Autoplay({ delay: 5000, stopOnInteraction: true }));
+  const plugin = useRef(Autoplay({ delay: 10000, stopOnInteraction: true }));
 
   return (
     <Carousel
@@ -21,10 +21,12 @@ const Banner = () => {
         {Array.from({ length: 5 }).map((_, index) => (
           <CarouselItem key={index} className="w-full">
             <div className="h-[600px]">
-              <div
-                className="flex h-full w-full items-center justify-center bg-cover bg-center bg-no-repeat object-top"
-                style={{ backgroundImage: "url('../banner1.jpg')" }}
-              ></div>
+              <div className="flex h-full w-full items-center justify-center">
+                <img
+                  src="../banner.jpg"
+                  className="h-full w-full object-cover"
+                />
+              </div>
             </div>
           </CarouselItem>
         ))}
