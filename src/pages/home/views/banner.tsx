@@ -23,7 +23,7 @@ const Banner = () => {
             <div className="h-[500px]">
               <div
                 className="flex h-full w-full items-center justify-center bg-cover bg-center bg-no-repeat"
-                style={{ backgroundImage: "url('../banner.webp')" }}
+                style={{ backgroundImage: "url('../banner1.jpg')" }}
               ></div>
             </div>
           </CarouselItem>
